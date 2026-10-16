@@ -63,6 +63,7 @@ for (const comment of comments) {
 const mediaById = new Map(media.map(item => [item.id, item]));
 const assetResults = await read('assets').catch(() => []);
 const assetMap = new Map(assetResults.filter(item => item.status !== 'failed').map(item => [item.url, item.target]));
+const linkOverrides = new Map(Object.entries(JSON.parse(await fs.readFile(path.join(root, 'site/link-overrides.json'), 'utf8'))));
 const categoryById = new Map(categories.map(item => [item.id, item]));
 const pageBySlug = new Map(pages.map(item => [item.slug, item]));
 const publishedSlugs = new Map([...posts, ...pages].map(item => [item.slug, item.link === origin + '/' ? '/' : `/${item.slug}/`]));
@@ -91,6 +92,7 @@ function feature(item) {
 }
 function rewriteUrl(raw) {
   const clean = decode(raw);
+  if (linkOverrides.has(clean)) return linkOverrides.get(clean);
   if (assetMap.has(clean)) return assetMap.get(clean);
   try {
     const url = new URL(clean);
@@ -106,10 +108,22 @@ function rewriteUrl(raw) {
 }
 function content(item) {
   return (item.content?.rendered || '')
+    .replace(/\[youtube\s+(https?:\/\/www\.youtube\.com\/watch\?[^\]\s]+)\]/gi, (_, raw) => {
+      const video = new URL(decode(raw));
+      const id = video.searchParams.get('v');
+      if (id === 'KZmincS6xTs') return '<em>Original video no longer available on YouTube.</em>';
+      return id && /^[A-Za-z0-9_-]{11}$/.test(id)
+        ? `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Watch video on YouTube</a>`
+        : escape(raw);
+    })
     .replace(/\s(?:srcset|sizes)=["'][^"']*["']/gi, '')
     .replace(/\b(src|href|poster)=(['"])(.*?)\2/gi, (_, attr, quote, value) => `${attr}=${quote}${escape(rewriteUrl(value))}${quote}`)
+    .replace(/>http:\/\/theinspiringtalk\.com\/manoj-vasudevan-interview\/<\/a>/gi, '>Listen to the Manoj Vasudevan interview</a>')
+    .replace(/>https:\/\/www\.gimletmedia\.com\/startup\/domain-king-season-6-episode-1<\/a>/gi, '>Listen to Domains 1: The .com King</a>')
+    .replace('This 1-min article by Darius Foroux is a must read', 'This short article on shame and pursuing dreams is worth reading')
     .replace(/<iframe\b[^>]*\bsrc=["'][^"']*\/embed\/[^"']*["'][^>]*><\/iframe>/gi, '')
     .replace(/<a href="\/(?:solid-principles|weekly-reflections-1)\/">([\s\S]*?)<\/a>/gi, '$1')
+    .replace(/<a\b[^>]*class="[^"]*wp-block-jetpack-slideshow_button-(?:prev|next|pause)[^"]*"[^>]*>\s*<\/a>/gi, '')
     .replace(/<form\b[^>]*>[\s\S]*?<\/form>/gi, '');
 }
 function layout({ title, description: summary, canonical, body, type = 'website', image = '', noindex = false }) {
