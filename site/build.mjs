@@ -49,6 +49,17 @@ for (const post of localPosts) {
 }
 posts.sort((a, b) => b.date.localeCompare(a.date));
 const media = await read('media');
+const comments = await read('comments');
+const publishedPostIds = new Set(posts.map(post => post.id).filter(Number.isInteger));
+if (comments.some(comment => comment.status !== 'approved' || !publishedPostIds.has(comment.post))) {
+  throw new Error('Nonpublic comment in public snapshot');
+}
+const commentsByPost = new Map();
+for (const comment of comments) {
+  const list = commentsByPost.get(comment.post) || [];
+  list.push(comment);
+  commentsByPost.set(comment.post, list);
+}
 const mediaById = new Map(media.map(item => [item.id, item]));
 const assetResults = await read('assets').catch(() => []);
 const assetMap = new Map(assetResults.filter(item => item.status !== 'failed').map(item => [item.url, item.target]));
@@ -126,6 +137,43 @@ function card(post) {
 function articleList(items) { return `<div class="article-list">${items.map(post => `<article><time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date)}</time><h3><a href="${postUrl(post)}">${escape(plain(post.title.rendered))}</a></h3></article>`).join('')}</div>`; }
 function pageHead(kicker, title, intro = '') { return `<section class="page-head"><p class="eyebrow">${escape(kicker)}</p><h1>${escape(title)}</h1>${intro ? `<p class="lead">${escape(intro)}</p>` : ''}</section>`; }
 function taxonomyLink(category) { return `<a href="/category/${encodeURIComponent(category.slug)}/">${escape(plain(category.name))}</a>`; }
+function commentBody(raw) {
+  return String(raw)
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<[^>]*>/g, ' ')
+    .split(/\n{2,}/)
+    .map(part => decode(part).replace(/[\t ]+/g, ' ').replace(/\n\s+/g, '\n').trim())
+    .filter(Boolean)
+    .map(part => `<p>${escape(part).replaceAll('\n', '<br>')}</p>`)
+    .join('');
+}
+function renderComments(post) {
+  const items = commentsByPost.get(post.id) || [];
+  if (!items.length) return '';
+  const byId = new Map(items.map(comment => [comment.id, comment]));
+  if (byId.size !== items.length) throw new Error(`Duplicate comment ID on post ${post.id}`);
+  const children = new Map();
+  for (const comment of items) {
+    if (comment.parent === comment.id) throw new Error(`Self-referencing comment ${comment.id}`);
+    const parent = byId.has(comment.parent) ? comment.parent : 0;
+    const list = children.get(parent) || [];
+    list.push(comment);
+    children.set(parent, list);
+  }
+  for (const list of children.values()) list.sort((a, b) => a.date.localeCompare(b.date) || a.id - b.id);
+  const visited = new Set();
+  function renderList(parent) {
+    return `<ol class="comment-list">${(children.get(parent) || []).map(comment => {
+      if (visited.has(comment.id)) throw new Error(`Comment reply cycle on post ${post.id}`);
+      visited.add(comment.id);
+      return `<li class="comment" id="comment-${comment.id}"><div class="comment-meta"><strong>${escape(comment.author_name || 'Reader')}</strong><a href="#comment-${comment.id}"><time datetime="${escape(comment.date)}">${dateLabel(comment.date)}</time></a></div><div class="comment-body">${commentBody(comment.body)}</div>${children.has(comment.id) ? renderList(comment.id) : ''}</li>`;
+    }).join('')}</ol>`;
+  }
+  const html = renderList(0);
+  if (visited.size !== items.length) throw new Error(`Unreachable comment reply on post ${post.id}`);
+  return `<section class="comments" id="comments" aria-labelledby="comments-heading"><h2 id="comments-heading">Comments <span>${items.length}</span></h2><p class="comments-note">Earlier comments are shown here. New comments are closed for now.</p>${html}</section>`;
+}
 
 await fs.rm(output, { recursive: true, force: true });
 await fs.mkdir(output, { recursive: true });
@@ -142,7 +190,7 @@ await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not foun
 for (const post of posts) {
   const title = plain(post.title.rendered);
   const cats = post.categories.map(id => categoryById.get(id)).filter(Boolean);
-  const body = `<article class="article"><header class="article-head"><p class="eyebrow"><time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date)}</time>${cats.length ? ` <span class="sep">·</span> ${cats.map(taxonomyLink).join(', ')}` : ''}</p><h1>${escape(title)}</h1></header><div class="prose">${content(post)}</div><footer class="article-foot"><a class="text-link" href="/all-articles-by-date/">← All articles</a></footer></article>`;
+  const body = `<article class="article"><header class="article-head"><p class="eyebrow"><time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date)}</time>${cats.length ? ` <span class="sep">·</span> ${cats.map(taxonomyLink).join(', ')}` : ''}</p><h1>${escape(title)}</h1></header><div class="prose">${content(post)}</div>${renderComments(post)}<footer class="article-foot"><a class="text-link" href="/all-articles-by-date/">← All articles</a></footer></article>`;
   await write(postUrl(post), layout({ title, description: description(post), canonical: postUrl(post), body, type: 'article', image: feature(post) }));
 }
 

@@ -7,6 +7,7 @@
     "check": "node site/check.mjs",
     "preview": "node site/serve.mjs",
     "sync": "node scripts/sync-public.mjs",
+    "sync:comments": "node scripts/sync-comments.mjs",
     "sync:media": "node scripts/sync-media.mjs",
     "backup:comments": "node scripts/backup-comments.mjs",
     "backup:wordpress": "node scripts/backup-wordpress.mjs",

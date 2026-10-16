@@ -8,8 +8,19 @@ const dist = path.join(root, 'dist');
 const posts = JSON.parse(await fs.readFile(path.join(root, 'archive/public/posts.json')));
 const pages = JSON.parse(await fs.readFile(path.join(root, 'archive/public/pages.json')));
 const assets = JSON.parse(await fs.readFile(path.join(root, 'archive/public/assets.json')));
+const comments = JSON.parse(await fs.readFile(path.join(root, 'archive/public/comments.json')));
 const failures = [];
 if ([...posts, ...pages].some(item => item.status !== 'publish')) failures.push('Unpublished item in public snapshot');
+const postById = new Map(posts.map(post => [post.id, post]));
+for (const comment of comments) {
+  if (comment.status !== 'approved' || !postById.has(comment.post)) failures.push(`Nonpublic comment in public snapshot: ${comment.id}`);
+  if (Object.keys(comment).some(key => ['author_email', 'author_ip', 'author_user_agent', 'meta', 'author_avatar_urls'].includes(key))) failures.push(`Private comment field in public snapshot: ${comment.id}`);
+  const post = postById.get(comment.post);
+  if (post) {
+    const html = await fs.readFile(path.join(dist, decodeURIComponent(post.slug), 'index.html'), 'utf8').catch(() => '');
+    if (!html.includes(`id="comment-${comment.id}"`)) failures.push(`Missing comment on ${post.slug}: ${comment.id}`);
+  }
+}
 for (const post of posts) {
   const file = path.join(dist, decodeURIComponent(post.slug), 'index.html');
   if (!await fs.stat(file).catch(() => null)) failures.push(`Missing post: ${post.slug}`);
@@ -58,6 +69,7 @@ async function checkLinks(dir) {
 }
 await checkLinks(dist);
 console.log(`Checked ${posts.length} posts, ${pages.length} pages and ${assets.length} media files.`);
+console.log(`Checked ${comments.length} approved comments on published posts.`);
 console.log(`Checked local links in ${htmlCount} HTML files.`);
 if (failures.length) { console.error(failures.join('\n')); process.exitCode = 1; }
 else console.log('Static build checks passed.');

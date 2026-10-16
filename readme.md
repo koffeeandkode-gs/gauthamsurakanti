@@ -11,7 +11,7 @@ npm run check
 npm run preview
 ```
 
-The build reads only published WordPress content in `archive/public/` and published Markdown files in `content/posts/`. It writes `dist/`, the Cloudflare Pages output directory. `npm run preview` serves it at `http://127.0.0.1:4173/`. `dist/` and `node_modules/` are ignored by Git.
+The build reads only published WordPress content, approved public comments in `archive/public/`, and published Markdown files in `content/posts/`. It writes `dist/`, the Cloudflare Pages output directory. `npm run preview` serves it at `http://127.0.0.1:4173/`. `dist/` and `node_modules/` are ignored by Git. Existing comments are read-only; there is no submission form.
 
 ## Publish a new article after WordPress
 
@@ -26,12 +26,13 @@ The theme lives in `site/style.css`; routes and templates live in `site/build.mj
 
 ```sh
 npm run sync
+npm run sync:comments
 npm run sync:media
 npm run build
 npm run check
 ```
 
-Run these if WordPress content changes before cutover. Public source JSON is stored in `archive/public/`, and only media referenced by published content is stored in `site/public/`. Do not use `archive/raw/` to build the public site; it includes drafts and private posts.
+Run these if WordPress content or approved comments change before cutover. Public source JSON is stored in `archive/public/`, and only media referenced by published content is stored in `site/public/`. The comments sync copies only approved comments on published posts and omits email addresses, IP addresses, and user agents. Do not use `archive/raw/` to build the public site; it includes drafts and private posts.
 
 ## Private backup
 
