@@ -1,0 +1,19 @@
+{
+  "name": "gauthamsurakanti-static",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node site/build.mjs",
+    "check": "node site/check.mjs",
+    "preview": "node site/serve.mjs",
+    "sync": "node scripts/sync-public.mjs",
+    "sync:media": "node scripts/sync-media.mjs",
+    "backup:comments": "node scripts/backup-comments.mjs",
+    "backup:wordpress": "node scripts/backup-wordpress.mjs",
+    "backup:media": "node scripts/backup-media.mjs"
+  },
+  "dependencies": {
+    "markdown-it": "^15.0.2",
+    "yaml": "^2.9.1"
+  }
+}

@@ -1,0 +1,1635 @@
+[
+  {
+    "id": 3872,
+    "date": "2026-07-07T07:37:43",
+    "date_gmt": "2026-07-07T07:37:43",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3872"
+    },
+    "modified": "2026-07-07T08:10:07",
+    "modified_gmt": "2026-07-07T08:10:07",
+    "slug": "tech",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/tech/",
+    "title": {
+      "rendered": "Engineering Notes"
+    },
+    "content": {
+      "rendered": "<p><!-- gauthamsurakanti.com/tech (WordPress page, slug: tech) Self-contained styled block. All CSS is scoped under .gs-tech so it cannot leak into the rest of the site. Push with: node scripts/publish-tech-page.mjs The publish script flattens newlines to spaces before sending, so WordPress wpautop cannot inject stray <br /> tags. Keep CSS comments as /* */ only. TO ADD OR SWAP A FEATURED ARTICLE: copy a <a class=\"gs-card\"> block below, update the href, tag, title, and description. Add class \"gs-card--featured\" and the <span class=\"gs-badge\">Featured</span> for a highlighted card. Only link to URLs that are actually live on koffeeandkode.com. --> </p>\n<div class=\"gs-tech\">\n<style> .gs-tech{--bg:#0e1117;--elev:#161b22;--elev2:#1c2230;--ink:#e8ebf2;--muted:#9aa4b4;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.14);--accent:#8b9bff;--accent2:#6d7dff;--tint:rgba(124,140,255,.12);box-sizing:border-box;max-width:1080px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(20px,4vw,52px);background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:18px;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased} .gs-tech *{box-sizing:border-box} /* This page only: hide the theme's duplicate title and blog sidebar, run full width. */ body.page-id-3872 .post-title{display:none} body.page-id-3872 .sidebar{display:none} body.page-id-3872 .content{width:100%;max-width:100%;float:none;margin:0} body.page-id-3872 .post-inner{padding:0} .gs-tech a{color:var(--accent)!important;text-decoration:none!important} .gs-tech a:hover{color:var(--accent2)!important} .gs-tech h1,.gs-tech h2,.gs-tech h3{color:var(--ink)!important;margin:0;line-height:1.2;letter-spacing:-.02em;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif!important} .gs-tech p{margin:0;color:var(--muted)} .gs-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:18px} .gs-title{font-size:clamp(2.1rem,6vw,3.3rem)} .gs-lede{margin-top:14px;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--ink);font-weight:500;opacity:.92} .gs-intro{margin-top:20px;max-width:64ch;font-size:1.03rem} .gs-intro strong{color:var(--ink);font-weight:600} .gs-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px} .gs-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;font-size:.95rem;font-weight:600;border:1px solid transparent;transition:transform .15s ease,background .2s ease,border-color .2s ease} .gs-btn:hover{transform:translateY(-2px)} .gs-btn--primary{background:var(--accent2);color:#0b0e14!important;border-color:var(--accent2)} .gs-btn--primary:hover{background:var(--accent);color:#0b0e14!important} .gs-btn--ghost{background:transparent;color:var(--ink)!important;border-color:var(--line2)} .gs-btn--ghost:hover{border-color:var(--accent);color:var(--accent)!important} .gs-note{margin-top:40px;padding:18px 22px;border-left:3px solid var(--accent2);background:var(--tint);border-radius:0 12px 12px 0;max-width:70ch} .gs-note p{color:var(--ink);opacity:.9;font-size:1rem} .gs-section{margin-top:clamp(48px,7vw,80px)} .gs-h2{font-size:clamp(1.5rem,3.5vw,2rem)} .gs-kicker{margin-top:8px;color:var(--muted);font-size:1rem;max-width:60ch} .gs-topics{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px} .gs-topic{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--elev);transition:border-color .2s ease,transform .15s ease} .gs-topic:hover{border-color:var(--line2);transform:translateY(-2px)} .gs-topic h3{font-size:1rem;letter-spacing:-.01em} .gs-topic p{margin-top:6px;font-size:.9rem;line-height:1.5} .gs-cards{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px} .gs-card{display:flex;flex-direction:column;padding:22px 22px 20px;border:1px solid var(--line);border-radius:14px;background:var(--elev);position:relative;transition:transform .16s ease,border-color .2s ease,box-shadow .2s ease} .gs-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 40px -18px rgba(109,125,255,.55)} .gs-card--featured{border-color:var(--line2);background:linear-gradient(180deg,var(--elev2),var(--elev))} .gs-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px} .gs-tag{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600} .gs-badge{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--tint);border:1px solid var(--line2);padding:3px 9px;border-radius:999px} .gs-card h3{font-size:1.18rem;color:var(--ink)!important} .gs-card p{margin-top:10px;font-size:.94rem;line-height:1.55;flex:1} .gs-readmore{margin-top:16px;font-size:.9rem;font-weight:600;color:var(--accent)!important;display:inline-flex;align-items:center;gap:6px} .gs-card:hover .gs-readmore{color:var(--accent2)!important} .gs-themes{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px} .gs-theme{padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--elev)} .gs-theme h3{font-size:1.05rem;color:var(--ink)} .gs-theme p{margin-top:8px;font-size:.93rem;line-height:1.55} .gs-kk{margin-top:clamp(48px,7vw,80px);padding:clamp(26px,4vw,40px);border:1px solid var(--line2);border-radius:16px;background:linear-gradient(135deg,var(--elev2),var(--elev))} .gs-kk h2{font-size:clamp(1.4rem,3vw,1.8rem)} .gs-kk p{margin-top:14px;max-width:66ch;font-size:1.02rem;color:var(--ink);opacity:.9} .gs-kk .gs-cta{margin-top:24px} .gs-foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);text-align:center} .gs-foot p{font-size:.92rem} @media (max-width:520px){ .gs-tech{border-radius:0;padding:32px 20px} .gs-cta{flex-direction:column;align-items:stretch} .gs-btn{justify-content:center} } </style>\n<header class=\"gs-hero\"> <span class=\"gs-eyebrow\">Gautham Surakanti · Senior Backend Engineer</span> </p>\n<h1 class=\"gs-title\">Engineering Notes</h1>\n<p class=\"gs-lede\">Writing on backend systems, AI infrastructure, and production engineering.</p>\n<p class=\"gs-intro\">I&#8217;m <strong>Gautham Surakanti</strong>, a Senior Backend Engineer with eight years building distributed systems in Go, Python, and Node.js. I write about the engineering problems I work through: authentication, performance, real-time systems, LLM infrastructure, and system design.</p>\n<div class=\"gs-cta\"> <a class=\"gs-btn gs-btn--primary\" href=\"#gs-featured\">Read featured articles</a> <a class=\"gs-btn gs-btn--ghost\" href=\"https://koffeeandkode.com/\" target=\"_blank\" rel=\"noopener\">Visit KoffeeAndKode ↗</a> <a class=\"gs-btn gs-btn--ghost\" href=\"/\">Back to portfolio</a> </div>\n</header>\n<div class=\"gs-note\">\n<p>This page curates my strongest technical writing from KoffeeAndKode. The goal isn&#8217;t to list every post, but to highlight the pieces that best show how I think about backend engineering, production systems, and AI infrastructure.</p>\n</p></div>\n<section class=\"gs-section\">\n<h2 class=\"gs-h2\">What I write about</h2>\n<p class=\"gs-kicker\">The problems that keep showing up in real backend work, and the ideas I keep returning to.</p>\n<div class=\"gs-topics\">\n<div class=\"gs-topic\">\n<h3>Backend Engineering</h3>\n<p>Services, APIs, and the reliability work that keeps them up.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Go</h3>\n<p>Concurrency, the runtime, and idiomatic design for production services.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Distributed Systems</h3>\n<p>Coordination, consistency, and failure modes across services.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Authentication &amp; Authorization</h3>\n<p>OAuth 2.0, tokens, sessions, RBAC, and multi-tenancy.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>AI Infrastructure</h3>\n<p>MCP servers, LLM evaluation, and AI features that hold up in production.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>RAG Pipelines</h3>\n<p>Retrieval, grounding, and evaluation for LLM-backed workflows.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Real-time Systems</h3>\n<p>WebSockets, queues, and pub/sub for event-driven backends.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Performance Engineering</h3>\n<p>Profiling, query tuning, and caching for low-latency systems.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>Databases &amp; Caching</h3>\n<p>Data modeling, replication, and cache strategy under load.</p>\n</div>\n<div class=\"gs-topic\">\n<h3>System Design</h3>\n<p>Trade-offs, capacity, and designing systems end to end.</p>\n</div></div>\n</section>\n<section class=\"gs-section\" id=\"gs-featured\">\n<h2 class=\"gs-h2\">Featured articles</h2>\n<p class=\"gs-kicker\">A curated set from KoffeeAndKode. Every link opens the full write-up, most with runnable Go.</p>\n<div class=\"gs-cards\"> <a class=\"gs-card gs-card--featured\" href=\"https://koffeeandkode.com/thundering-herd-0-to-1/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">Distributed Systems</span><span class=\"gs-badge\">Featured</span></div>\n<h3>Thundering Herd 0 to 1</h3>\n<p>The thundering herd from the bug to the fix: naive retry, exponential backoff, jitter, and singleflight, each as a small runnable Go program.</p>\n<p> <span class=\"gs-readmore\">Read article ↗</span> </a> <a class=\"gs-card gs-card--featured\" href=\"https://koffeeandkode.com/context-0-to-1/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">Go · Concurrency</span><span class=\"gs-badge\">Featured</span></div>\n<h3>Context 0 to 1</h3>\n<p>What context.Context actually does. Four tiny Go programs that walk from a leaking goroutine to a single cancel() that stops a whole tree of work.</p>\n<p> <span class=\"gs-readmore\">Read article ↗</span> </a> <a class=\"gs-card\" href=\"https://koffeeandkode.com/solid-principles-0-to-1/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">Go · Design</span></div>\n<h3>SOLID Principles 0 to 1</h3>\n<p>SOLID applied to real Go with packages, interfaces, and composition. Before-and-after code, plus a checklist for keeping services easy to change.</p>\n<p> <span class=\"gs-readmore\">Read article ↗</span> </a> <a class=\"gs-card\" href=\"https://koffeeandkode.com/books/database/ddia/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">Systems Books</span></div>\n<h3>Designing Data-Intensive Applications: Notes</h3>\n<p>Chapter-by-chapter notes on how data systems are built, replicated, partitioned, and made reliable.</p>\n<p> <span class=\"gs-readmore\">Read notes ↗</span> </a> <a class=\"gs-card\" href=\"https://koffeeandkode.com/books/system-design/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">System Design</span></div>\n<h3>System Design Interview: Notes</h3>\n<p>Working notes on designing distributed systems end to end: estimation, trade-offs, and the building blocks that recur.</p>\n<p> <span class=\"gs-readmore\">Read notes ↗</span> </a> <a class=\"gs-card\" href=\"https://koffeeandkode.com/go/\" target=\"_blank\" rel=\"noopener\"> </p>\n<div class=\"gs-card-top\"><span class=\"gs-tag\">Go</span></div>\n<h3>The Go Series</h3>\n<p>An ongoing series on Go: language fundamentals, concurrency, the runtime and scheduler, and idiomatic design.</p>\n<p> <span class=\"gs-readmore\">Browse series ↗</span> </a> <!-- EMPTY-STATE / TO REPLACE: As you publish deeper posts on Auth, WebSockets, RAG, or MCP, add them here as new <a class=\"gs-card\"> blocks and drop the weakest hub card above. Auth and Cloud categories are not linked yet because they have no live posts. Do not point a card at a category with zero posts. --> </div>\n</section>\n<section class=\"gs-section\">\n<h2 class=\"gs-h2\">Selected engineering areas</h2>\n<p class=\"gs-kicker\">Where my writing and my day-to-day work overlap: the systems I build and reason about in production.</p>\n<div class=\"gs-themes\">\n<div class=\"gs-theme\">\n<h3>Reliable backend systems</h3>\n<p>Services that degrade gracefully. Retries, idempotency, backpressure, and clean failure modes.</p>\n</div>\n<div class=\"gs-theme\">\n<h3>AI features that survive production</h3>\n<p>MCP test infrastructure with PII scrubbing, LLM evaluation, and RAG pipelines built for reliability, not demos.</p>\n</div>\n<div class=\"gs-theme\">\n<h3>Performance under real load</h3>\n<p>Profiling and caching behind sub-second clinical screens and a LOINC lab-normalization pipeline.</p>\n</div>\n<div class=\"gs-theme\">\n<h3>Auth, identity, and multi-tenancy</h3>\n<p>Auth0 multi-tenant architecture, OAuth 2.0, and session and token design done safely.</p>\n</div>\n<div class=\"gs-theme\">\n<h3>Real-time workflows</h3>\n<p>WebSocket events powering live Smart Summary updates, plus queues and event-driven design.</p>\n</div>\n<div class=\"gs-theme\">\n<h3>Learning from foundational books</h3>\n<p>Notes from Designing Data-Intensive Applications and the system-design volumes, applied to real work.</p>\n</div></div>\n</section>\n<section class=\"gs-kk\">\n<h2 class=\"gs-h2\">KoffeeAndKode</h2>\n<p>KoffeeAndKode is my broader technical notebook, where I publish notes, prototypes, and short essays on backend engineering, Go, distributed systems, and books like Designing Data-Intensive Applications.</p>\n<div class=\"gs-cta\"> <a class=\"gs-btn gs-btn--primary\" href=\"https://koffeeandkode.com/\" target=\"_blank\" rel=\"noopener\">Visit KoffeeAndKode ↗</a> </div>\n</section>\n<footer class=\"gs-foot\">\n<p>For a broader archive, <a href=\"https://koffeeandkode.com/\" target=\"_blank\" rel=\"noopener\">visit KoffeeAndKode ↗</a></p>\n</footer></div>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Technical writing by Gautham Surakanti on backend engineering, distributed systems, Go, AI infrastructure, RAG pipelines, authentication, and production performance.</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3872",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3872",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3872"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3872/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3874,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3872/revisions/3874"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3872"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3677,
+    "date": "2022-02-27T04:29:06",
+    "date_gmt": "2022-02-27T04:29:06",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3677"
+    },
+    "modified": "2022-02-27T04:29:06",
+    "modified_gmt": "2022-02-27T04:29:06",
+    "slug": "resources",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/resources/",
+    "title": {
+      "rendered": "Resources"
+    },
+    "content": {
+      "rendered": "\n<p class=\"wp-block-paragraph\"><strong><a href=\"https://gauthamsurakanti.com/when-you-feel/\">When you feel &#8230;</a></strong></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When you feel &#8230;</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3677",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3677",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3677"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3677/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3680,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3677/revisions/3680"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3677"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3678,
+    "date": "2022-02-27T04:28:54",
+    "date_gmt": "2022-02-27T04:28:54",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3678"
+    },
+    "modified": "2022-02-27T05:45:34",
+    "modified_gmt": "2022-02-27T05:45:34",
+    "slug": "when-you-feel",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/when-you-feel/",
+    "title": {
+      "rendered": "When you feel &#8230;"
+    },
+    "content": {
+      "rendered": "\n<h2 class=\"wp-block-heading\">&#8230;that you are behind in life</h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<ol class=\"wp-block-list\"><li><a href=\"https://www.linkedin.com/posts/clementmihailescu_education-activity-6806290793855299584-ayM1\">Clement Mihailescu&#8217;s LinkedIn Post</a></li></ol>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<h2 class=\"wp-block-heading\">&#8230;that you are not making progress</h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<ol class=\"wp-block-list\"><li><a href=\"https://medium.com/marketing-dragons/top-5-lessons-and-tactics-from-tim-ferriss-tools-of-titans-bb8a48a298d4\">Coach Sommer &amp; The Single Decision</a></li></ol>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>&#8230;that you are behind in life Clement Mihailescu&#8217;s LinkedIn Post &#8230;that you are not making progress Coach Sommer &amp; The Single Decision</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3678",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3678",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3678"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3678/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3692,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3678/revisions/3692"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3678"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3665,
+    "date": "2022-02-05T08:32:38",
+    "date_gmt": "2022-02-05T08:32:38",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3665"
+    },
+    "modified": "2022-02-05T08:32:39",
+    "modified_gmt": "2022-02-05T08:32:39",
+    "slug": "services",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/services/",
+    "title": {
+      "rendered": "Services"
+    },
+    "content": {
+      "rendered": "\n<p class=\"wp-block-paragraph\">Hey There! </p>\n\n\n\n<p class=\"wp-block-paragraph\">I&#8217;m Available for a 15-min call most of the times 🙂 <br>For anything longer, a small charge if willing; all of which will be donated to <br><a href=\"https://www.giveindia.org/\">Give India </a><br>Win-Win! </p>\n\n\n\n<figure class=\"wp-block-image is-resized\"><img loading=\"lazy\" decoding=\"async\" src=\"https://s.w.org/images/core/emoji/13.1.0/svg/1f642.svg\" alt=\"🙂\" width=\"20\" height=\"20\"/></figure>\n\n\n\n<ol class=\"wp-block-list\"><li><strong>I&#8217;m a Senior Software Engineer at an early stage fitness/tech startup. </strong><br><em><span style=\"text-decoration: underline;\">Profile</span></em>: <br>1. Golang, ReactJS, NodeJS, Python, <br>2. Data Structures &amp; Algorithms<br><em><span style=\"text-decoration: underline;\">How I can be of Help</span></em><span style=\"text-decoration: underline;\"> to You</span>: <br>1. Getting Start on any of the above tech stack<br>2. Interview Preparation Strategies<br><span style=\"text-decoration: underline;\"><em>Show Me Your Work</em>!!</span>: <br>[<a href=\"https://gauthamsurakanti.com/koffeeandkode/\">Click Me!!</a>]<br></li><li><strong>I&#8217;m an endurance Athlete</strong><br>=> <em><span style=\"text-decoration: underline;\">Profile</span></em>: <br>1. 1200km Paris-Brest-Paris Finisher<br>2. Marathon with clock-time of 4H 37min<br>=> <em><span style=\"text-decoration: underline;\"><em><span style=\"text-decoration: underline;\">How I can be of Help</span></em><span style=\"text-decoration: underline;\"> to You</span></span></em>: <br>1. Cycling from 0 km upto 1200km <br>2. Running from 0 km upto 42km<br>3. Basic Nutrition: Principles, Strategies, Tips &amp; Tricks on Nutrition<br>=> <span style=\"text-decoration: underline;\"><em>Show Me Your Work</em></span>!!: <br>[<a href=\"http://Road to Paris: Countdown to D-Day\" title=\"Click Me!!\">Click Me!!</a>]<br></li><li><strong>I&#8217;m a public speaking Enthusiast</strong><br>=> <em>Profile</em>:<br>(Loading &#8230;)<br><br>=> <em><span style=\"text-decoration: underline;\"><em><span style=\"text-decoration: underline;\">How I can be of Help</span></em><span style=\"text-decoration: underline;\"> to You</span></span></em>: <br>(Loading &#8230;)<br><br>=> <span style=\"text-decoration: underline;\"><em>Show Me Your Work</em>!!</span>: <br>(Loading &#8230;)<br></li><li><strong>I write Blogs</strong><br>=> <em><span style=\"text-decoration: underline;\">Profile</span></em>:<br>(Loading &#8230;)<br><br>=> <em><span style=\"text-decoration: underline;\"><em><span style=\"text-decoration: underline;\">How I can be of Help</span></em><span style=\"text-decoration: underline;\"> to You</span></span></em>: <br>(Loading &#8230;)<br><br>=> <span style=\"text-decoration: underline;\"><em>Show Me Your Work</em>!!</span>: <br>(Loading &#8230;)<br></li><li><strong>I read Books</strong><br>=> <em><span style=\"text-decoration: underline;\">Profile</span></em>:<br>(Loading &#8230;)<br><br>=> <em><span style=\"text-decoration: underline;\"><em><span style=\"text-decoration: underline;\">How I can be of Help</span></em><span style=\"text-decoration: underline;\"> to You</span></span></em>: <br>(Loading &#8230;)<br><br>=> <span style=\"text-decoration: underline;\"><em>Show Me Your Work</em>!!</span>: <br>(Loading &#8230;)<br></li></ol>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Hey There! I&#8217;m Available for a 15-min call most of the times 🙂 For anything longer, a small charge if willing; all of which will be donated to Give India Win-Win! I&#8217;m a Senior Software Engineer at an early stage fitness/tech startup. Profile: 1. Golang, ReactJS, NodeJS, Python, 2. Data Structures &amp; AlgorithmsHow I can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3665",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3665",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3665"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3665/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3666,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3665/revisions/3666"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3665"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3655,
+    "date": "2022-02-05T07:58:02",
+    "date_gmt": "2022-02-05T07:58:02",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3655"
+    },
+    "modified": "2022-02-05T07:58:03",
+    "modified_gmt": "2022-02-05T07:58:03",
+    "slug": "book-summaries",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/book-summaries/",
+    "title": {
+      "rendered": "Book Summaries"
+    },
+    "content": {
+      "rendered": "\n<h2 class=\"wp-block-heading\" id=\"2022\">2022</h2>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Don’t Lose Your Mind, Lose Your Weight</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>How to Fail at Almost Everything and Still Win Big</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Atomic Habits</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Deep Work</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>2022 (Queued) Don’t Lose Your Mind, Lose Your Weight (Queued) How to Fail at Almost Everything and Still Win Big (Queued) Atomic Habits (Queued) Deep Work</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3655",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3655",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3655"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3655/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3656,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3655/revisions/3656"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3655"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3648,
+    "date": "2022-02-05T07:39:01",
+    "date_gmt": "2022-02-05T07:39:01",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3648"
+    },
+    "modified": "2022-02-05T07:58:16",
+    "modified_gmt": "2022-02-05T07:58:16",
+    "slug": "gratitude",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/gratitude/",
+    "title": {
+      "rendered": "Gratitude"
+    },
+    "content": {
+      "rendered": "\n<p class=\"wp-block-paragraph\"><strong>(Queued)</strong> Small Words. Big Difference</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued)</strong> Nothing without Them</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>(Queued) Small Words. Big Difference (Queued) Nothing without Them</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3648",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3648",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3648"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3648/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3657,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3648/revisions/3657"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3648"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3562,
+    "date": "2022-01-19T03:39:43",
+    "date_gmt": "2022-01-19T03:39:43",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3562"
+    },
+    "modified": "2022-02-05T08:02:23",
+    "modified_gmt": "2022-02-05T08:02:23",
+    "slug": "koffeeandkode",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/koffeeandkode/",
+    "title": {
+      "rendered": "KoffeeAndKode"
+    },
+    "content": {
+      "rendered": "\n<p class=\"wp-block-paragraph\">As part of <a href=\"https://gauthamsurakanti.com/whats-up-2022-reskilling-and-upskilling/\">#SkillUp2022</a></p>\n\n\n\n<hr class=\"wp-block-separator is-style-dots\"/>\n\n\n\n<h2 class=\"wp-block-heading\" id=\"february\">February</h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Javascript: Async-Await</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Javascript: Promises</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>ReactJS: States and Lifecycle</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Javascript: Map, Filter, Reduce</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Javascript: Var, Let, Const</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>(Queued) </strong>Project Management Principles #1<br></p>\n\n\n\n<h2 class=\"wp-block-heading\" id=\"january\">January</h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>Jan 22</strong> <a href=\"https://gauthamsurakanti.com/solid-principles/\">SOLID Principles</a></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>As part of #SkillUp2022 February (Queued) Javascript: Async-Await (Queued) Javascript: Promises (Queued) ReactJS: States and Lifecycle (Queued) Javascript: Map, Filter, Reduce (Queued) Javascript: Var, Let, Const (Queued) Project Management Principles #1 January Jan 22 SOLID Principles</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3562",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3562",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3562"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 6,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3562/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3661,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3562/revisions/3661"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3562"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3538,
+    "date": "2022-01-03T04:33:38",
+    "date_gmt": "2022-01-03T04:33:38",
+    "guid": {
+      "rendered": "https://gauthamsurakanti.com/?page_id=3538"
+    },
+    "modified": "2022-01-23T17:14:26",
+    "modified_gmt": "2022-01-23T17:14:26",
+    "slug": "guest-posts",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/guest-posts/",
+    "title": {
+      "rendered": "Guest Posts"
+    },
+    "content": {
+      "rendered": "\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1022\" height=\"1024\" data-attachment-id=\"3584\" data-permalink=\"https://gauthamsurakanti.com/guest-posts/veena_sunkar_guest_post/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post.png\" data-orig-size=\"1357,1359\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"Veena_Sunkar_Guest_Post\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-1022x1024.png\" src=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-1022x1024.png\" alt=\"\" class=\"wp-image-3584\" srcset=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-1022x1024.png 1022w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-300x300.png 300w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-150x150.png 150w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-768x769.png 768w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-88x88.png 88w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-900x901.png 900w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post-1280x1282.png 1280w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Veena_Sunkar_Guest_Post.png 1357w\" sizes=\"auto, (max-width: 1022px) 100vw, 1022px\" /></figure>\n\n\n\n<h2 class=\"has-text-align-center wp-block-heading\"><a href=\"https://gauthamsurakanti.com/a-glimpse-of-my-journey-into-spirituality/\">A Glimpse of my Journey Into Spirituality</a></h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<figure class=\"wp-block-gallery columns-1 is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"683\" data-attachment-id=\"3540\" data-permalink=\"https://gauthamsurakanti.com/guest-posts/devayani-reddi/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-scaled.jpg\" data-orig-size=\"2560,1707\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;5.6&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;NIKON D5300&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1491577728&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;55&quot;,&quot;iso&quot;:&quot;3200&quot;,&quot;shutter_speed&quot;:&quot;0.016666666666667&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}\" data-image-title=\"Devayani-Reddi\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-1024x683.jpg\" src=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-1024x683.jpg\" alt=\"\" data-id=\"3540\" data-full-url=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-scaled.jpg\" data-link=\"https://gauthamsurakanti.com/?attachment_id=3540\" class=\"wp-image-3540\" srcset=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-1024x683.jpg 1024w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-300x200.jpg 300w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-768x512.jpg 768w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-1536x1024.jpg 1536w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-2048x1365.jpg 2048w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-900x600.jpg 900w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Devayani-Reddi-1280x853.jpg 1280w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure></li></ul></figure>\n\n\n\n<h2 class=\"has-text-align-center wp-block-heading\"><a href=\"https://gauthamsurakanti.com/lost-but-won-ft-devayani-reddi/\">Lost But Won ft. Devayani Reddi</a></h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<figure class=\"wp-block-gallery columns-1 is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img loading=\"lazy\" decoding=\"async\" width=\"640\" height=\"640\" data-attachment-id=\"3539\" data-permalink=\"https://gauthamsurakanti.com/guest-posts/gautam-pothineni/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni.jpg\" data-orig-size=\"640,640\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}\" data-image-title=\"Gautam-Pothineni\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni.jpg\" src=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni.jpg\" alt=\"\" data-id=\"3539\" data-full-url=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni.jpg\" data-link=\"https://gauthamsurakanti.com/?attachment_id=3539\" class=\"wp-image-3539\" srcset=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni.jpg 640w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni-300x300.jpg 300w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni-150x150.jpg 150w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Gautam-Pothineni-88x88.jpg 88w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></figure></li></ul></figure>\n\n\n\n<h2 class=\"has-text-align-center wp-block-heading\"><a href=\"https://gauthamsurakanti.com/blog-cast-with-gautam-pothineni/\">Blog Cast with Gautam Pothineni</a></h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<figure class=\"wp-block-gallery columns-1 is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img loading=\"lazy\" decoding=\"async\" width=\"449\" height=\"253\" data-attachment-id=\"3541\" data-permalink=\"https://gauthamsurakanti.com/guest-posts/mohammed-furqan/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan.jpg\" data-orig-size=\"449,253\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"Mohammed-Furqan\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan.jpg\" src=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan.jpg\" alt=\"\" data-id=\"3541\" data-full-url=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan.jpg\" data-link=\"https://gauthamsurakanti.com/?attachment_id=3541\" class=\"wp-image-3541\" srcset=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan.jpg 449w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mohammed-Furqan-300x169.jpg 300w\" sizes=\"auto, (max-width: 449px) 100vw, 449px\" /></figure></li></ul></figure>\n\n\n\n<h2 class=\"has-text-align-center wp-block-heading\"><a href=\"https://gauthamsurakanti.com/blog-cast-with-mohammed-furqan/\">Blog Cast with Mohammed Furqan</a></h2>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<figure class=\"wp-block-gallery columns-1 is-cropped wp-block-gallery-4 is-layout-flex wp-block-gallery-is-layout-flex\"><ul class=\"blocks-gallery-grid\"><li class=\"blocks-gallery-item\"><figure><img loading=\"lazy\" decoding=\"async\" width=\"478\" height=\"638\" data-attachment-id=\"3542\" data-permalink=\"https://gauthamsurakanti.com/guest-posts/swathi-peddi/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi.jpg\" data-orig-size=\"478,638\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"Swathi-Peddi\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi.jpg\" src=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi.jpg\" alt=\"\" data-id=\"3542\" data-full-url=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi.jpg\" data-link=\"https://gauthamsurakanti.com/?attachment_id=3542\" class=\"wp-image-3542\" srcset=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi.jpg 478w, https://gauthamsurakanti.com/wp-content/uploads/2022/01/Swathi-Peddi-225x300.jpg 225w\" sizes=\"auto, (max-width: 478px) 100vw, 478px\" /></figure></li></ul></figure>\n\n\n\n<h2 class=\"has-text-align-center wp-block-heading\"><a href=\"https://gauthamsurakanti.com/blog_cast-with-swathi-peddi/\">Blog_Cast with Swathi Peddi</a></h2>\n\n\n\n<hr class=\"wp-block-separator is-style-wide\"/>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A Glimpse of my Journey Into Spirituality Lost But Won ft. Devayani Reddi Blog Cast with Gautam Pothineni Blog Cast with Mohammed Furqan Blog_Cast with Swathi Peddi</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3538",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3538",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3538"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3538/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3585,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3538/revisions/3585"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3538"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "date": "2021-10-14T16:17:14",
+    "date_gmt": "2021-10-14T16:17:14",
+    "guid": {
+      "rendered": "http://gauthamsurakanti.com/?page_id=2"
+    },
+    "modified": "2021-10-14T16:17:14",
+    "modified_gmt": "2021-10-14T16:17:14",
+    "slug": "sample-page",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/sample-page/",
+    "title": {
+      "rendered": "Sample Page"
+    },
+    "content": {
+      "rendered": "\n<p class=\"wp-block-paragraph\">This is an example page. It&#8217;s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:</p>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"><p>Hi there! I&#8217;m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin&#8217; caught in the rain.)</p></blockquote>\n\n\n\n<p class=\"wp-block-paragraph\">&#8230;or something like this:</p>\n\n\n\n<blockquote class=\"wp-block-quote is-layout-flow wp-block-quote-is-layout-flow\"><p>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</p></blockquote>\n\n\n\n<p class=\"wp-block-paragraph\">As a new WordPress user, you should go to <a href=\"https://gauthamsurakanti.com/wp-admin/\">your dashboard</a> to delete this page and create new pages for your content. Have fun!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This is an example page. It&#8217;s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this: Hi there! I&#8217;m a bike messenger [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "open",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-2",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/2",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=2"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/2/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=2"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3064,
+    "date": "2019-09-22T16:45:56",
+    "date_gmt": "2019-09-22T16:45:56",
+    "guid": {
+      "rendered": "http://takeawaysfrommylife.com/?page_id=3064"
+    },
+    "modified": "2026-04-26T13:20:47",
+    "modified_gmt": "2026-04-26T13:20:47",
+    "slug": "all-articles-by-date",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/all-articles-by-date/",
+    "title": {
+      "rendered": "All Articles by Date"
+    },
+    "content": {
+      "rendered": "<h2> </h2>\r\n<p><a href=\"https://gauthamsurakanti.com/thoughts-unpublished/\" target=\"_blank\" rel=\"noopener\">Thoughts, Unpublished</a></p>\r\n<h2>2026</h2>\n<p><strong>Apr 26</strong> <a href=\"https://gauthamsurakanti.com/bar-giving-back-2026/\" target=\"_blank\" rel=\"noopener\">Fifth time lucky: BAR Giving Back 2026</a></p>\n<h2>2025</h2>\r\n<p><strong>Apr 6</strong> <a href=\"https://gauthamsurakanti.com/week-1473/\" target=\"_blank\" rel=\"noopener\">Week #1473</a></p>\r\n<p><strong>Mar 31</strong> <a href=\"https://gauthamsurakanti.com/week-1472/\" target=\"_blank\" rel=\"noopener\">Week #1472</a></p>\r\n<p><strong>Mar 24</strong> <a href=\"https://gauthamsurakanti.com/week-1471/\" target=\"_blank\" rel=\"noopener\">Week #1471</a></p>\r\n<p><strong>Feb 2</strong> <a href=\"https://gauthamsurakanti.com/my-1st-ultimate-frisbee-game/\" target=\"_blank\" rel=\"noopener\">My 1st Ultimate Frisbee Game</a></p>\r\n<h2>2024</h2>\r\n<p>&#8211;NA&#8211;</p>\r\n<h2>2023</h2>\r\n<p><strong>July 4</strong> <a href=\"https://gauthamsurakanti.com/the-final-sprint-monthly-cours/\" target=\"_blank\" rel=\"noopener\">The Final Sprint @ Monthly Cours</a></p>\r\n<p><strong>July 3</strong> <a href=\"https://gauthamsurakanti.com/150-days-of-training-with-coach-bikeyvenky-%f0%9f%ab%b6/\" target=\"_blank\" rel=\"noopener\">150 Days of training with coach BikeyVenky 🫶</a></p>\r\n<h2>2022</h2>\n<p><strong>Sep 11</strong> <a href=\"https://gauthamsurakanti.com/week-at-a-glance-1343/\" target=\"_blank\" rel=\"noopener\">Week at a Glance #1343</a></p>\r\n<p><strong>Sept 4</strong> <a href=\"https://gauthamsurakanti.com/week-1342/\" target=\"_blank\" rel=\"noopener\">Week #1342</a></p>\r\n<p><strong>Sept 3 </strong><a href=\"https://gauthamsurakanti.com/favourite-sports-anime-ft-haikyuu/\" target=\"_blank\" rel=\"noopener\">Favourite Sports Anime ft. Haikyuu!!</a><strong><br /><br />Jan 23</strong> <a href=\"https://gauthamsurakanti.com/a-glimpse-of-my-journey-into-spirituality/\" target=\"_blank\" rel=\"noopener\">A Glimpse of my Journey Into Spirituality ft. Veena Sunkari</a></p>\r\n<p><strong>Jan 9</strong>  <a href=\"https://gauthamsurakanti.com/week-1307/\" target=\"_blank\" rel=\"noopener\">Week #1307</a></p>\r\n<p><strong>Jan 8</strong>  <a href=\"https://gauthamsurakanti.com/whats-up-2022-reskilling-and-upskilling/\" target=\"_blank\" rel=\"noopener\">What’s Up 2022? Reskilling and Upskilling</a></p>\r\n<p><strong>Jan 2   </strong><a href=\"https://gauthamsurakanti.com/a-day-trek-to-uttari-betta/\">Day Trek to Uttari</a><a href=\"https://gauthamsurakanti.com/a-day-trek-to-uttari-betta/\" target=\"_blank\" rel=\"noopener\"> Betta</a></p>\r\n<p><strong>Jan 2</strong>   <a href=\"https://gauthamsurakanti.com/week-1306/\" target=\"_blank\" rel=\"noopener\">Week #1306</a></p>\r\n<h2>2020</h2>\r\n<p><strong>Oct 18    </strong><a href=\"https://gauthamsurakanti.com/remembering-msp-moc-and-4-years-of-toastmasters-journeyfrom-the-outside/\" target=\"_blank\" rel=\"noopener\">Remembering MSP, MOC and 4 Years of Toastmasters Journey(from the outside)</a></p>\r\n<p><strong>Aug 23    </strong><a href=\"https://gauthamsurakanti.com/trip-down-memory-lane-ft-hyderabad-randonneurs-at-pbp2019/\" target=\"_blank\" rel=\"noopener\">Trip down Memory Lane ft. Hyderabad Randonneurs at PBP&#8217;2019</a></p>\r\n<p><strong>Aug 8      </strong><a href=\"https://gauthamsurakanti.com/road-to-paris-countdown-to-d-day/\" target=\"_blank\" rel=\"noopener\">Road to Paris: Countdown to D-Day</a></p>\r\n<p><strong>Apr 26</strong>     <a href=\"https://gauthamsurakanti.com/road-to-paris-registration-preparation-visa-and-bankruptcy/\" target=\"_blank\" rel=\"noopener\">Road to Paris: Registration, Preparation, Visa and Bankruptcy</a></p>\r\n<p><strong>Feb 23     </strong><a href=\"https://gauthamsurakanti.com/race-report-club-run-2020/\" target=\"_blank\" rel=\"noopener\">Race Report: Club Run 2020</a></p>\r\n<h2> </h2>\r\n<h2><strong>2019</strong></h2>\r\n<p><strong>Dec 2</strong>            <a href=\"https://gauthamsurakanti.com/november-at-a-glance/\" target=\"_blank\" rel=\"noopener\">November’2019 at a Glance</a></p>\r\n<p><strong>Jan 24          </strong><a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/road-to-paris-initial-thoughts/\" target=\"_blank\" rel=\"noopener\">Road to Paris: Initial Thoughts</a></p>\r\n<h2>2018</h2>\r\n<p><strong>Sep 10</strong>    <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/badminton-barbecue-burgers-and-more/\" target=\"_blank\" rel=\"noopener\">Badminton, Barbecue, Burgers and more</a></p>\r\n<p><strong>Sep 4</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/post-run-recovery-baby-steps-in-career-moc-2018-finals-and-more/\" target=\"_blank\" rel=\"noopener\">Post Run Recovery, Baby Steps in Career, MOC 2018 Finals and more</a></p>\r\n<p><strong>Jul 19</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/lost-but-won-ft-devayani-reddi/\" target=\"_blank\" rel=\"noopener\">Lost But Won ft. Devayani Reddi</a></p>\r\n<p><strong>Jul 18</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/how-to-win-master-orator-championship-or-come-pretty-close/\">How to Win Master Orator Championship (or come pretty close)</a></p>\r\n<p><strong>Jun 10</strong>     <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/meetups-proteins-and-more/\" target=\"_blank\" rel=\"noopener\">Meetups, Proteins and more…</a></p>\r\n<p><strong>May 28</strong>    <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/trip-to-arunachalam-intro-to-cryptography-and-more/\" target=\"_blank\" rel=\"noopener\">Trip to Arunachalam, Intro to Cryptography and more</a></p>\r\n<p><strong>Apr 8</strong>       <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/blog-cast-with-gautam-pothineni/\" target=\"_blank\" rel=\"noopener\">Blog Cast with Gautam Pothineni</a></p>\r\n<p><strong>Apr 8</strong>       <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/gautham-meets-gautam-a-k-a-pondiman-ft-marathon-training-blogcast-intro/\" target=\"_blank\" rel=\"noopener\">Gautham meets Gautam a.k.a Pondiman ft Marathon Training + Blogcast Intro</a></p>\r\n<p><strong>Feb 18</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/my-impossible-list/\" target=\"_blank\" rel=\"noopener\">My Impossible List</a></p>\r\n<p><strong>Jan 15 </strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/lessons-from-a-super-randonneur/\" target=\"_blank\" rel=\"noopener\">Lessons from a Super Randonneur</a></p>\r\n<p><strong>Jan 1</strong>         <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/21-life-lessons-at-21/\" target=\"_blank\" rel=\"noopener\">21 Life Lessons at 21</a></p>\r\n<h2>2017</h2>\r\n<p><strong>Sep 30</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/blog-cast-with-mohammed-furqan/\" target=\"_blank\" rel=\"noopener\">Blog Cast with Mohammed Furqan</a></p>\r\n<p><strong>Aug 17</strong>     <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/master-orator-championship-2017-finals/\" target=\"_blank\" rel=\"noopener\">Master Orator Championship 2017 Finals</a></p>\r\n<p><strong>Aug 2</strong>       <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/define-or-defy-moc-2017/\" target=\"_blank\" rel=\"noopener\">Define or Defy @ MOC-2017</a></p>\r\n<p><strong>Jul 16</strong>       <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/week-1074/\" target=\"_blank\" rel=\"noopener\">Week #1074</a></p>\r\n<p><strong>July 10</strong>    <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/blog_cast-with-swathi-peddi/\" target=\"_blank\" rel=\"noopener\">Blog_Cast with Swathi Peddi</a></p>\r\n<p><strong>Jun 25</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/week-1070/\" target=\"_blank\" rel=\"noopener\">Week #1070</a></p>\r\n<p><strong>Jun 20</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/5-bullets/\" target=\"_blank\" rel=\"noopener\">5 Bullets</a></p>\r\n<p><strong>Jun 20</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/3-small-apps-big-difference/\" target=\"_blank\" rel=\"noopener\">Small Apps. Big Difference</a></p>\r\n<p><strong>Jun 18</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/an-evening-at-the-wall-ride-park/\" target=\"_blank\" rel=\"noopener\">An Evening at the Wall Ride Park</a></p>\r\n<p><strong>Jun 17</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/prompts/\" target=\"_blank\" rel=\"noopener\">Prompts</a></p>\r\n<p><strong>Jun 16</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/cycling-tips/\" target=\"_blank\" rel=\"noopener\">Cycling Tips</a></p>\r\n<p><strong>Jun 15</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/take-your-time/\" target=\"_blank\" rel=\"noopener\">Take Your Time</a></p>\r\n<p><strong>Jun 14</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/15-day-daily-blogging-challenge/\" target=\"_blank\" rel=\"noopener\">15 Day Daily Blogging Challenge</a></p>\r\n<p><strong>Jun 14</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/back-to-fiction/\" target=\"_blank\" rel=\"noopener\">Back to Fiction</a></p>\r\n<p><strong>May 13</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/the-art-of-journaling/\" target=\"_blank\" rel=\"noopener\">The Art of Journaling</a></p>\r\n<p><strong>May 13</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/questions-to-ask-yourself-daily/\" target=\"_blank\" rel=\"noopener\">Questions To Ask Yourself Daily</a></p>\r\n<p><strong>May 3</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/exercises-worth-trying/\" target=\"_blank\" rel=\"noopener\">Exercises worth trying!!!</a></p>\r\n<p><strong>May 3</strong>        <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/parkinsons-law/\" target=\"_blank\" rel=\"noopener\">Parkinson’s Law</a></p>\r\n<p><strong>Apr 18</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/quotes-i-try-to-live-by/\" target=\"_blank\" rel=\"noopener\">Quotes I Try To Live By</a></p>\r\n<p><strong>Apr 16</strong>      <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/best-ice-breaking-activity/\" target=\"_blank\" rel=\"noopener\">Best Ice Breaking Activity</a></p>\r\n<h2>2016</h2>\r\n<p><strong>Dec 3</strong>         <a class=\"post-item__title-link\" href=\"https://gauthamsurakanti.com/quality-sleep/\" target=\"_blank\" rel=\"noopener\">5 Simple Steps to Get Quality Sleep</a></p>\r\n\r\n<p class=\"wp-block-paragraph\">&nbsp;</p>\r\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>  Thoughts, Unpublished 2026 Apr 26 Fifth time lucky: BAR Giving Back 2026 2025 Apr 6 Week #1473 Mar 31 Week #1472 Mar 24 Week #1471 Feb 2 My 1st Ultimate Frisbee Game 2024 &#8211;NA&#8211; 2023 July 4 The Final Sprint @ Monthly Cours July 3 150 Days of training with coach BikeyVenky 🫶 2022 [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-3064",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3064",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=3064"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 22,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3064/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3839,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/3064/revisions/3839"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=3064"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2043,
+    "date": "2018-09-19T02:57:53",
+    "date_gmt": "2018-09-19T02:57:53",
+    "guid": {
+      "rendered": "http://takeawaysfrommylife.com/?page_id=2043"
+    },
+    "modified": "2025-02-02T18:34:25",
+    "modified_gmt": "2025-02-02T18:34:25",
+    "slug": "an-introduction",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/",
+    "title": {
+      "rendered": "Start Here"
+    },
+    "content": {
+      "rendered": "\r\n<p class=\"wp-block-paragraph\">Last time I checked(Jan&#8217;2025), I have lived in this world of ours for 10,275 days. <a href=\"https://www.thecalculatorsite.com/misc/age-calculator.php\">LINK</a></p>\r\n<p>Don’t you think it’s insane? I have lived for 14,796,000 minutes in a very unique way. Different circumstances, different actions, reactions and responses, different thought processes, different people, different objects, successes(not many), failures(a lot!) and different learnings.</p>\r\n<p>In the end, a unique perspective towards life. Something very different from everybody else.</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">Lot many Lessons. Lot many Takeaways.</p>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />\r\n\r\n\r\n<p class=\"wp-block-paragraph\">I&#8217;m a huge fan of the blogs of <a href=\"https://seths.blog/\" target=\"_blank\" rel=\"noreferrer noopener\">Seth Godin</a>, <a href=\"https://sive.rs/\" target=\"_blank\" rel=\"noreferrer noopener\">Derek Sivers</a> and <a href=\"https://ankurwarikoo.com/\" target=\"_blank\" rel=\"noreferrer noopener\">Ankur Warikoo</a>. I love the way they keep it simple and I intend to do the same.</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">So hit that follow button(with the cursor!) and stay tuned. More interesting stuff coming up 🙂</p>\r\n<p><strong>Social Profiles</strong></p>\r\n<ol>\r\n<li><a href=\"https://www.linkedin.com/in/gauthamsurakanti/\">LinkedIn</a></li>\r\n<li><a href=\"https://www.instagram.com/gautham_surakanti/\">Instagram</a></li>\r\n<li><a href=\"https://www.youtube.com/watch?v=0sTh_8II0uI&amp;t=9s\">Youtube</a></li>\r\n<li><a href=\"https://www.strava.com/athletes/19678138\">Strava</a></li>\r\n</ol>\r\n<p>&nbsp;</p>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />\r\n\r\n\r\n<div class=\"wp-block-cover has-background-dim has-custom-content-position is-position-top-left\"><img decoding=\"async\" data-attachment-id=\"3518\" data-permalink=\"https://gauthamsurakanti.com/a-day-trek-to-uttari-betta/kanchan_andy_aniket/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Kanchan_Andy_Aniket.jpeg\" data-orig-size=\"1599,733\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\" data-image-title=\"Kanchan_Andy_Aniket\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Kanchan_Andy_Aniket-1024x469.jpeg\" class=\"wp-block-cover__image-background wp-image-3518\" src=\"https://takeawaysfrommylife.files.wordpress.com/2021/04/ride-1.jpg?w=419\" alt=\"\" data-object-fit=\"cover\" />\r\n<div class=\"wp-block-cover__inner-container is-layout-flow wp-block-cover-is-layout-flow\">\r\n<p class=\"has-large-font-size wp-block-paragraph\">I RIDE!</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">1 * State ITT Championship Gold<br />1 * 1200km Paris-Brest-Paris<br />2 * Super Randonnuer Series [200, 300, 400, 600] km<br />2 * 1000km <br />1 * Fleche<br />50+ Competitive Races<br />30000km on legs</p>\r\n</div>\r\n</div>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />\r\n\r\n\r\n<div class=\"wp-block-cover has-background-dim has-custom-content-position is-position-top-left\"><img decoding=\"async\" data-attachment-id=\"3520\" data-permalink=\"https://gauthamsurakanti.com/a-day-trek-to-uttari-betta/mr_prakash/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mr_Prakash-scaled.jpg\" data-orig-size=\"2560,1920\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;2.2&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;ASUS_I005DA&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1641040235&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;2.13&quot;,&quot;iso&quot;:&quot;25&quot;,&quot;shutter_speed&quot;:&quot;0.001409368&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}\" data-image-title=\"Mr_Prakash\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Mr_Prakash-1024x768.jpg\" class=\"wp-block-cover__image-background wp-image-3520\" src=\"https://takeawaysfrommylife.files.wordpress.com/2021/04/run-1.jpg?w=425\" alt=\"\" data-object-fit=\"cover\" />\r\n<div class=\"wp-block-cover__inner-container is-layout-flow wp-block-cover-is-layout-flow\">\r\n<p class=\"has-large-font-size wp-block-paragraph\">I RUN!</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">2 * 42km Full Marathons<br />2 * Half Marathons<br />2 * 10k<br />2000km on legs</p>\r\n</div>\r\n</div>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />\r\n\r\n\r\n<div class=\"wp-block-media-text alignwide is-stacked-on-mobile is-vertically-aligned-center\">\r\n<figure class=\"wp-block-media-text__media\"><img decoding=\"async\" data-attachment-id=\"3524\" data-permalink=\"https://gauthamsurakanti.com/a-day-trek-to-uttari-betta/aditya-1/\" data-orig-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Aditya-1-scaled.jpg\" data-orig-size=\"1920,2560\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;2.45&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;ASUS_I005DA&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1641037143&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;3.74&quot;,&quot;iso&quot;:&quot;25&quot;,&quot;shutter_speed&quot;:&quot;0.00053645&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}\" data-image-title=\"Aditya-1\" data-image-description=\"\" data-image-caption=\"\" data-large-file=\"https://gauthamsurakanti.com/wp-content/uploads/2022/01/Aditya-1-768x1024.jpg\" class=\"wp-image-3524 size-full\" src=\"https://takeawaysfrommylife.files.wordpress.com/2021/04/tm_2-1.jpg?w=358\" alt=\"\" /></figure>\r\n<div class=\"wp-block-media-text__content\">\r\n<p class=\"has-large-font-size wp-block-paragraph\">I Speak!</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">Chartered Toastmaster and Treasurer with ADP Hyderabad Toastmasters Club.</p>\r\n\r\n\r\n\r\n<p class=\"wp-block-paragraph\">3 Podiums.<br />1) Master Orator Championship 2017 &#8211; Runner Up <br />2) AHTMC Humorous Speech Contest &#8211; Runner Up<br />3) AHTMC Speech Evaluation Contest &#8211; 2nd Runner Up</p>\r\n</div>\r\n</div>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />\r\n\r\n\r\n<div class=\"wp-block-cover has-background-dim is-layout-flow wp-block-cover-is-layout-flow\"><img decoding=\"async\" class=\"wp-block-cover__image-background wp-image-3535\" src=\"https://takeawaysfrommylife.files.wordpress.com/2021/04/travel-1-2.jpg?w=424\" alt=\"\" data-object-fit=\"cover\" />\r\n<div class=\"wp-block-cover__inner-container\">\r\n<p class=\"has-large-font-size\">I Travel!</p>\r\n<p>6 Countries. More to Go!</p>\r\n<p>France. Switzerland. <br />Czech Republic. <br />Italy. USA.</p>\r\n</div>\r\n</div>\r\n\r\n\r\n<hr class=\"wp-block-separator is-style-wide\" />",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Last time I checked(Jan&#8217;2025), I have lived in this world of ours for 10,275 days. LINK Don’t you think it’s insane? I have lived for 14,796,000 minutes in a very unique way. Different circumstances, different actions, reactions and responses, different thought processes, different people, different objects, successes(not many), failures(a lot!) and different learnings. In the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-2043",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/2043",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=2043"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/2043/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3735,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/2043/revisions/3735"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=2043"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1824,
+    "date": "2018-02-25T05:40:50",
+    "date_gmt": "2018-02-25T05:40:50",
+    "guid": {
+      "rendered": "https://takeawaysfrommylife.wordpress.com/?page_id=1824"
+    },
+    "modified": "2018-02-25T05:40:50",
+    "modified_gmt": "2018-02-25T05:40:50",
+    "slug": "blog-posts",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/blog-posts/",
+    "title": {
+      "rendered": "Blog Posts"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-1824",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1824",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=1824"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1824/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=1824"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1810,
+    "date": "2018-02-25T05:15:16",
+    "date_gmt": "2018-02-25T05:15:16",
+    "guid": {
+      "rendered": "https://takeawaysfrommylife.wordpress.com/?page_id=1810"
+    },
+    "modified": "2018-02-25T05:15:16",
+    "modified_gmt": "2018-02-25T05:15:16",
+    "slug": "my-impossible-list",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/my-impossible-list/",
+    "title": {
+      "rendered": "My Impossible List"
+    },
+    "content": {
+      "rendered": "<h3>Skip to the bottom if you want to the <span style=\"text-decoration:underline;\"><em>WHAT, WHY &amp; HOW</em></span> of the IMPOSSIBLE LIST!!</h3>\n<h1>But before that, you can scroll down through &#8220;MY IMPOSSIBLE LIST&#8221;</h1>\n<p>&nbsp;</p>\n<h1 style=\"text-align:center;\"><span style=\"text-decoration:underline;\">WORK</span></h1>\n<h2><em>Skills</em></h2>\n<ul>\n<li><a href=\"https://www.codechef.com/certification/about\" target=\"_blank\" rel=\"noopener\">CodeChef Certification for Data Structures and Algorithms</a></li>\n<li>Intermediate MS Excel Skills</li>\n<li>Digital Marketing Course (Before May 2018)</li>\n<li>Machine Learning Course (Before June 2018)</li>\n<li>Cryptography Course</li>\n<li>60 Words Per Minute Typing Speed</li>\n</ul>\n<h2><em>Financial Independence</em></h2>\n<ul>\n<li><del>Earn money outside of Income </del></li>\n<li>Increase money earned by at least 50% each month<br />\n<del>February</del><br />\nMarch</p>\n<h3><del><br />\n</del>BLOGGING<del><br />\n</del></h3>\n</li>\n<li><del>1 Subscriber for Blog 😛</del><br />\n<del>10 Subscribers for Blog </del><br />\n25 Subscribers for Blog</li>\n<li><del>500 views in a month</del><br />\n1000 views in a month</li>\n</ul>\n<p>&nbsp;</p>\n<h3>        YOUTUBE</h3>\n<ul>\n<li>Post at least 2 Videos in March 2018</li>\n</ul>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<h1 style=\"text-align:center;\"><span style=\"text-decoration:underline;\">WORKOUT</span></h1>\n<h2><em>Fitness Goals</em></h2>\n<ul>\n<li>Do a Handstand</li>\n<li>Do a Wall Flip</li>\n<li>Do a Back Flip</li>\n</ul>\n<h2><em>Endurance Goals</em></h2>\n<ul>\n<li>Jog to college which is 40 kms away. Kind of a Full Marathon ( Before April 2018)</li>\n<li><del>Complete a 10K Run</del> (PB 58min)<del><br />\n</del>                     Improve Personal Best to under 45 Mins</li>\n<li>Complete a Half Marathon (PB 2 hr 25 min)<del><br />\n</del>                      Complete Half Marathon under 2 hours</li>\n<li>Complete a Full Marathon</li>\n<li><del>Become a Randonnuer</del></li>\n<li><del>Become a Super Randonnuer(SR)</del></li>\n<li>Complete a Double SR</li>\n<li>Complete PBP</li>\n<li>Complete LEL</li>\n<li>Complete Spartan Race</li>\n<li>Complete 1/2 IRON MAN</li>\n<li>Complete FULL IRON MAN</li>\n</ul>\n<h1 style=\"text-align:center;\"><span style=\"text-decoration:underline;\">PERSONAL</span></h1>\n<h2><em>Habit Goals</em></h2>\n<ul>\n<li>Meditate daily for 20 minutes</li>\n<li>Maintain Daily Morning and Evening Journal</li>\n<li>Daily 30 minute workout</li>\n</ul>\n<h2><em>Creative Goals</em></h2>\n<ul>\n<li>Early Morning Writing. At least 25 mins for 30 days</li>\n<li>Take part in a Drama</li>\n<li><del>Take part in a Dance perfo</del></li>\n<li><del>rmance</del></li>\n<li>At least one Theatre/Play performance</li>\n<li>Solve 3&#215;3 under one minute</li>\n</ul>\n<h2><em>Family and Relationships</em></h2>\n<ul>\n<li>One family trip every six months</li>\n</ul>\n<h2><em>Travel Goals</em></h2>\n<h2><em>Places to Attend</em></h2>\n<ul>\n<li>SpaceX</li>\n</ul>\n<h2><em>Events to Attend</em></h2>\n<ul>\n<li><a href=\"https://www.ces.tech/\" target=\"_blank\" rel=\"noopener\">CES- Consumer Electronic Show</a></li>\n<li><a href=\"https://www.tonyrobbins.com/events/unleash-the-power-within/\" target=\"_blank\" rel=\"noopener\">Unleash the Power Within- Tony Robbins</a></li>\n<li></li>\n</ul>\n<h2><em>Fun or Insane</em></h2>\n<ul>\n<li>Climb a building</li>\n</ul>\n<p>&nbsp;</p>\n<h2><em><a href=\"https://docs.google.com/document/d/1ygJrfPuuTkD-0GiMc2Qv8__1Brg6F-VLgQbBkvbKukM/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">Book Reading List</a></em></h2>\n<p>&nbsp;</p>\n<h2><em><a href=\"https://docs.google.com/document/d/1rP754Nq1wu7MeqWaSyTcLJ4BEOAB5GEpDQXP-PNot0E/edit?usp=sharing\" target=\"_blank\" rel=\"noopener\">Movie Watch List</a></em></h2>\n<p>&nbsp;</p>\n<h1 style=\"text-align:center;\"><span style=\"text-decoration:underline;\">CURRENT PROGRESS</span></h1>\n<h2></h2>\n<p><em><strong>Loading &#8230;</strong></em></p>\n<h1 style=\"text-align:center;\"><span style=\"text-decoration:underline;\">WHAT, WHY &amp; HOW</span></h1>\n<p>&nbsp;</p>\n<h2><em>The What</em></h2>\n<p>So, you must have got a rough idea about what an Impossible List is about. You might have related it to a bucket list or thought it&#8217;s just another name for a bucket list. Kind of!</p>\n<p>In the month of February, I was consuming content from College Info Geek and <a href=\"https://collegeinfogeek.com/about/meet-the-author/my-impossible-list/\" target=\"_blank\" rel=\"noopener\">I came across this wonderful piece about the Impossible List.</a> That was an inspiration for me to create mine.<br />\nQuoting Thomas Frank himself, an Impossible List is  &#8220;<strong><em>put simply, the impossible list is an ever-evolving list of experiences that build upon each other, help others as well as yourself, and implore you to take action. This is mine, which is, of course, ever-evolving.&#8221;</em></strong></p>\n<p>I pretty much implemented the same format as Thomas&#8217; for my list but the only change was I divided <strong><em>my</em></strong> Goals into three sections &#8211; Work, Workout and Personal, a format inspired from <a href=\"https://okdork.com/\" target=\"_blank\" rel=\"noopener\">Noah Kagan&#8217;s.</a></p>\n<p>To summarize,</p>\n<ul>\n<li>An Impossible List is a collection of <strong><em>your Goals </em></strong>which you want to be accomplished in your life time. It&#8217;s not a bucket list which you do when you get some time away. An Impossible List reflects how you should be using your daily time.</li>\n<li>You can divide into sections and sub sections for more definite structure but nevertheless you can invent your own format.</li>\n<li>In an Impossible List, the goals keep evolving. Once you complete a goal, you cross it up and then set forth a new goal. Enjoy your victory but get back in your race buddy. Race against time. Just kidding! No pressure</li>\n</ul>\n<p>&nbsp;</p>\n<h2><em>The Why</em></h2>\n<p>So, why to make an Impossible List.<br />\nI have three strong reasons why I prepared mine.</p>\n<ul>\n<li><strong><em>You&#8217;ll have a Vision:\n<p></em></strong><em>We have a tendency to drift in life when we don&#8217;t have a proper system or structure. When you make an Impossible List or rather any goal setting excercise,</p>\n<p>1) You get a clarity. You set forth some goals and to achieve them you have to put in daily effort. Small gains daily get you there. It&#8217;s not a one day-get all scenario. You got to build up the momentum. </em><br />\nEx: I can&#8217;t complete a full marathon on a whiff. There needs to be a daily preparation, weekly goals to be met and give my best when the opportunity presents itself. ( or better, I make the opportunity)</p>\n<p>2) Whenever an opportunity comes, you won&#8217;t fail to recognize it. or Maybe the Law of Attraction might work for you.<br />\nEx: When you plan on doing a trek to himalayas, you start noticing price drops in airlines, or discounts on the trek gear. These things used to happen but you start noticing now.</p>\n<p>And when you make your Impossible List public or share it with a couple of your friends, these two things happen.</li>\n<li><em><strong>You&#8217;ll be Accountable:\n<p></strong></em>You&#8217;ll have that positive pressure on you, now that you made a commitment which isn&#8217;t private. You can request your friends to give that kick in the butt whenever you slack.<br />\nEx: Maybe make a pact with your best friends that if you don&#8217;t complete (this), (this ) and (this) in (this)  time frame, you owe him a treat. He&#8217;s gonna watch you now!</li>\n</ul>\n<p>&nbsp;</p>\n<ul>\n<li><strong><em>You can Collaborate:\n<p></em></strong>After you make your list public, a couple of interested friends or individuals might help you in your pursuit.<br />\nEx: They might call and drop by with some popcorn whenever you want to watch the movies on your Watch List, or help you by lending some books or maybe guide you with their experience in things which you are still a beginner. You never know.</li>\n</ul>\n<p>&nbsp;</p>\n<h2><em>The How</em></h2>\n<ul>\n<li><strong><em>Make a List\n<p></em></strong>First things first, just make a list.<br />\nTake a 10-15 minute break, write a couple of things down which you always wanted to do. Visit some list and borrow stuff resonates with you. No restrictions. Just keep writing. Need not be a one time thing. Add stuff whenever something strikes you.</p>\n<p>Make a List in either Evernote or Google Docs. Share it with your close friends or you can make it public on your Social profiles.</li>\n<li><em><strong>Revisit It<br />\n</strong><br />\n</em>Sometimes you forget you made a list. So, make it a point to revisit the list at least once a week. (Bare minimum) Add things. Remove things.</li>\n</ul>\n<p><em>and lastly,</em></p>\n<ul>\n<li><strong><em>Put some effort </em></strong>so as to reach the point of striking out things in <em>your list.</em></li>\n</ul>\n<p>It&#8217;s been 2 months since the start of a New Year. If those two months drifted away for you, let not the other 10 drift the same. Do a goal setting exercise and make a list. And better yet, leave a link in the comments below so that we all can keep each other accountable.</p>\n<p>And hey, do follow my blog. Really putting some effort and help me cross one of the items on my list.</p>\n<p>Gracias!!!</p>\n<p>&nbsp;</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Skip to the bottom if you want to the WHAT, WHY &amp; HOW of the IMPOSSIBLE LIST!! But before that, you can scroll down through &#8220;MY IMPOSSIBLE LIST&#8221; &nbsp; WORK Skills CodeChef Certification for Data Structures and Algorithms Intermediate MS Excel Skills Digital Marketing Course (Before May 2018) Machine Learning Course (Before June 2018) Cryptography [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 33,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-1810",
+      "page",
+      "type-page",
+      "status-publish",
+      "has-post-thumbnail",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1810",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=1810"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1810/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media/33"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=1810"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 503,
+    "date": "2017-06-20T10:39:25",
+    "date_gmt": "2017-06-20T10:39:25",
+    "guid": {
+      "rendered": "https://takeawaysfrommylife.wordpress.com/?page_id=503"
+    },
+    "modified": "2017-06-20T10:39:25",
+    "modified_gmt": "2017-06-20T10:39:25",
+    "slug": "more-about-me",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/more-about-me/",
+    "title": {
+      "rendered": "More About Me"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-503",
+      "page",
+      "type-page",
+      "status-publish",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/503",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=503"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/503/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=503"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1990,
+    "date": "2016-11-18T15:01:52",
+    "date_gmt": "2016-11-18T15:01:52",
+    "guid": {
+      "rendered": "https://takeawaysfrommylife.wordpress.com/?page_id=2"
+    },
+    "modified": "2016-11-18T15:01:52",
+    "modified_gmt": "2016-11-18T15:01:52",
+    "slug": "about",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/about/",
+    "title": {
+      "rendered": "About"
+    },
+    "content": {
+      "rendered": "<p>Gautham is your typical boy next door. A gym rat with some abs in making to substantiate. A health freak who devours burgers on his cheat days. Loves adventure sports or any sport for that matter. He&#8217;d rather go Trail Cycling or Trekking all his life than get stuck with a boring 9 to 5. An avid reader who reads to mould a better version of himself. He finds his solace in Football and Friends. From being a Man baby to Dr. Phil, there are many versions to him. Read his blog to find out which version he wants to be today!!!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This is just a short excerpt for the about&nbsp;page.</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 1789,
+    "parent": 0,
+    "menu_order": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-1990",
+      "page",
+      "type-page",
+      "status-publish",
+      "has-post-thumbnail",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": true,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1990",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=1990"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1990/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media/1789"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=1990"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1991,
+    "date": "2016-11-18T15:01:51",
+    "date_gmt": "2016-11-18T15:01:51",
+    "guid": {
+      "rendered": "https://takeawaysfrommylife.wordpress.com/?page_id=3"
+    },
+    "modified": "2016-11-18T15:01:51",
+    "modified_gmt": "2016-11-18T15:01:51",
+    "slug": "contact",
+    "status": "publish",
+    "type": "page",
+    "link": "https://gauthamsurakanti.com/contact/",
+    "title": {
+      "rendered": "Contact"
+    },
+    "content": {
+      "rendered": "<p>This is a contact page with some basic contact information and a contact form. <div data-test='contact-form'\n\t\t\tid='contact-form-1991'\n\t\t\tclass='jetpack-contact-form-container '\n\t\t\tdata-wp-interactive='jetpack/form' data-wp-context='{\"formId\":\"1991\",\"formHash\":\"f89eb54fdc0a516deab36b760158a8d66edefbe8\",\"showErrors\":false,\"errors\":[],\"fields\":[],\"isMultiStep\":false,\"useAjax\":true,\"submissionData\":null,\"formattedSubmissionData\":[],\"submissionSuccess\":false,\"submissionError\":null,\"elementId\":\"jp-form-f89eb54fdc0a516deab36b760158a8d66edefbe8\",\"isSingleInputForm\":false,\"isForcedHorizontal\":false}'\n\t\t\tdata-wp-watch--scroll-to-wrapper=\"callbacks.scrollToWrapper\"\n\t\t>\n<div class=\"contact-form-submission contact-form-ajax-submission\" data-wp-bind--aria-hidden=\"state.isSuccessMessageAriaHidden\" data-wp-class--submission-success=\"context.submissionSuccess\" id=\"contact-form-success-f89eb54fdc0a516deab36b760158a8d66edefbe8\" tabindex=\"-1\" aria-labelledby=\"contact-form-success-header-f89eb54fdc0a516deab36b760158a8d66edefbe8\"><p class=\"go-back-message\"><a class=\"link\" role=\"button\" tabindex=\"0\" data-wp-on--click=\"actions.goBack\" href=\"/wp-json/wp/v2/pages?per_page=100&#038;page=1\">← Back</a></p><h4 data-wp-bind--aria-hidden=\"state.isSuccessMessageAriaHidden\" id=\"contact-form-success-header-f89eb54fdc0a516deab36b760158a8d66edefbe8\">Thank you for your response. ✨</h4>\n\n<template data-wp-each--submission=\"context.formattedSubmissionData\">\n\t\t\t\t\t<div class=\"jetpack_forms_contact-form-success-summary\">\n\t\t\t\t\t\t<div class=\"field-name-wrapper\">\n\t\t\t\t\t\t\t<div class=\"field-type-icon\" data-wp-watch=\"callbacks.watchFieldTypeIcon\"></div>\n\t\t\t\t\t\t\t<div class=\"field-name\" data-wp-text=\"context.submission.label\" data-wp-bind--hidden=\"!context.submission.label\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"field-value\" data-wp-text=\"context.submission.value\" data-wp-bind--hidden=\"!context.submission.showPlainValue\"></div>\n\t\t\t\t\t\t<a class=\"field-url\" data-wp-bind--href=\"context.submission.url\" data-wp-text=\"context.submission.value\" data-wp-bind--hidden=\"!context.submission.url\" target=\"_blank\" rel=\"noopener noreferrer\"></a>\n\t\t\t\t\t\t<div class=\"field-rating\" data-wp-bind--hidden=\"!context.submission.rating\" data-wp-watch=\"callbacks.watchRatingIcons\"></div>\n\t\t\t\t\t\t<div class=\"field-images\" data-wp-bind--hidden=\"!context.submission.images\">\n\t\t\t\t\t\t\t<template data-wp-each--image=\"context.submission.images\">\n\t\t\t\t\t\t\t\t<div class=\"field-image-option\" data-wp-class--is-empty=\"!context.image.src\">\n\t\t\t\t\t\t\t\t\t<figure class=\"field-image-option__image\" data-wp-class--is-empty=\"!context.image.src\">\n\t\t\t\t\t\t\t\t\t\t<img data-wp-bind--src=\"context.image.src\" data-wp-bind--hidden=\"!context.image.src\" />\n\t\t\t\t\t\t\t\t\t\t<img decoding=\"async\" src=\"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=\" data-wp-bind--hidden=\"context.image.src\" />\n\t\t\t\t\t\t\t\t\t</figure>\n\t\t\t\t\t\t\t\t\t<div class=\"field-image-option__label-wrapper\">\n\t\t\t\t\t\t\t\t\t\t<span class=\"field-image-option__label-code\" data-wp-text=\"context.image.letterCode\"></span>\n\t\t\t\t\t\t\t\t\t\t<span class=\"field-image-option__label\" data-wp-text=\"context.image.label\" data-wp-bind--hidden=\"!context.image.label\"></span>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"field-files\" data-wp-bind--hidden=\"!context.submission.files\">\n\t\t\t\t\t\t\t<template data-wp-each--file=\"context.submission.files\">\n\t\t\t\t\t\t\t\t<div class=\"field-file\">\n\t\t\t\t\t\t\t\t\t<div class=\"field-file__thumbnail\" data-wp-style--background-image=\"context.file.previewUrl\" data-wp-style--mask-image=\"context.file.iconUrl\" data-wp-bind--hidden=\"!context.file.hasPreview\"></div>\n\t\t\t\t\t\t\t\t\t<svg class=\"field-file__icon\" data-wp-bind--hidden=\"context.file.hasPreview\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n\t\t\t\t\t\t\t\t\t\t<path d=\"M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z\" fill=\"currentColor\"/>\n\t\t\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t\t\t<span class=\"field-file__name\" data-wp-text=\"context.file.name\"></span>\n\t\t\t\t\t\t\t\t\t<span class=\"field-file__size\" data-wp-text=\"context.file.size\"></span>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</template>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</template></div><form action='https://gauthamsurakanti.com/contact/'\n\t\t\t\tid='jp-form-f89eb54fdc0a516deab36b760158a8d66edefbe8'\n\t\t\t\tmethod='post'\n\t\t\t\tclass='contact-form commentsblock jetpack-contact-form__form has-no-jetpack-form-layout' aria-label=\"Contact\"\n\t\t\t\tdata-wp-on--submit=\"actions.onFormSubmit\"\n\t\t\t\tdata-wp-on--reset=\"actions.onFormReset\"\n\t\t\t\tdata-wp-class--submission-success=\"context.submissionSuccess\"\n\t\t\t\tdata-wp-class--is-first-step=\"state.isFirstStep\"\n\t\t\t\tdata-wp-class--is-last-step=\"state.isLastStep\"\n\t\t\t\tdata-wp-class--is-ajax-form=\"context.useAjax\"\n\t\t\t\tnovalidate >\n<input type='hidden' name='jetpack_contact_form_jwt' value='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbmNyeXB0ZWRfYXR0cmlidXRlcyI6Im0rS3hXaFBMTzBKa29tdmVFYXM5L1FoNURBUklpWXNVY3VoZFVBUzRSbEJDWEN0Vzh6Nmp0c28vOWlNdXo5Wi81WnE4QitSU2hxUWlZWEtJai9peG04U2pza3ZtTjhrakJldFhwK2c1OGpIYTR6cnM3Z1lYNGhUTWNvOThZVGRMMjJNeG85Mk95YWNQcjRDVG9hWnE2Mm9sWndSSlBvei9nS25xZ09EY0Y3d3pGUjN4aUhhMmNaSXlkbDRlbnM0R1VxUDdYUU5oVGFkdERiamUyUUxIeTFQQlp2SHJndGNVang3RFYvM2xIbXR2c3l3VG1hQVRKRExzeDdXODNBV3B0NmJoZEhMSmxFdnVKdWhaQ1Z4MDZQUG9FMzJSbDVrQmpxcDkzZmRUTGtLd3dWTmNFYzVSems3Y2ZTVXBlb1V0L2Y2ajZES0ZnTzJXNE5XRHNPZU1QZGxqU1c2TkN2bGJkY3l5ZG03MExMOFpHWTJWckpzNjJNZ3Zhank5V0NkWDFkYTZYQlg0WndZcXNrMmkxeHYvQkpVdXkveFJuNE4vN3BTNUxoU0hva3A1VXFyd1RBUzlrMGhuTGUvK2IzQ3ZQWmtVWWlsNVZXTk4rays2UDNaWkxQblVXSnVRbVRlejZoNUkxMk15c3BQY3A5dm1hTkhXZ2cyUVFnc1pmTnRDUVFJQVBOZmR5WjNIZTJDRjhlQmFZZDBpS0RLT1FNQ1hzNUdTUjFEWG5ZVjlZa2RiWlVrcXhQQlhUZ3Q5TjY5ZVk3b2QweFdyelljMk5NRW1QMndWWGtzVXR0NUZJMkRCMEhmWXltOGIrMlpQYTRsT3NkYWhYcyt1TTZhdlBGSUM4ZENUYVlISFBNQURidFp0NWxJbkVDK1FCZTFlbUlHL1U2K2xQYVFuZ2NMbC8yUzVydFQrWnNML3JEQk00RTRic1ZlMm9QZ203MWJLMFZtaUtITmtCYXlLVEJOd1BxRHFBSTkzNkVOdG16UFRJdktLcFBNR3N1Y1dScHZqZTJQS05EWXljQ1Jkb2tEeTFuZnFES3hDUDZjMHd3NjRGVTJzL3Z2V21qbEppRVJlZmk2VDNkbUFMekswOU1sN3JUWHBpUmVxQ0tiVnlVeE1UNFdad1V5SzQ1TUtXcmlYa1BrK3hXb2d3Q2E2a05qUUlnTXc1QndjVUV3ZlZzQ21PYWpVRGlhamt1N3VVL1hHM0RlRWFaUT0iLCJjb250ZW50IjoiW2NvbnRhY3QtZmllbGQgbGFiZWw9XCJOYW1lXCIgdHlwZT1cIm5hbWVcIiByZXF1aXJlZD1cIjFcIi9dW2NvbnRhY3QtZmllbGQgbGFiZWw9XCJFbWFpbFwiIHR5cGU9XCJlbWFpbFwiIHJlcXVpcmVkPVwiMVwiL11bY29udGFjdC1maWVsZCBsYWJlbD1cIldlYnNpdGVcIiB0eXBlPVwidXJsXCIvXVtjb250YWN0LWZpZWxkIGxhYmVsPVwiQ29tbWVudFwiIHR5cGU9XCJ0ZXh0YXJlYVwiIHJlcXVpcmVkPVwiMVwiL10iLCJoYXNoIjoiZjg5ZWI1NGZkYzBhNTE2ZGVhYjM2Yjc2MDE1OGE4ZDY2ZWRlZmJlOCIsInNvdXJjZSI6eyJlbnRyeV90aXRsZSI6IkNvbnRhY3QiLCJlbnRyeV9wYWdlIjoxLCJzb3VyY2VfaWQiOjE5OTEsInNvdXJjZV90eXBlIjoic2luZ2xlIiwicmVxdWVzdF91cmwiOiJodHRwczovL2dhdXRoYW1zdXJha2FudGkuY29tL3dwLWpzb24vd3AvdjIvcGFnZXMifSwidmVyc2lvbiI6MiwiY2lwaGVyIjoiYWVzLTI1Ni1nY20ifQ.Thxqba4AykL2dlahgcVhbanAuqwKU6rKigos4Xkxg28' />\n\n<div style=\"\"  data-wp-interactive=\"jetpack/form\" data-wp-context='{\"fieldId\":\"g1991-name\",\"fieldType\":\"name\",\"fieldLabel\":\"Name\",\"fieldValue\":\"\",\"fieldPlaceholder\":\"\",\"fieldIsRequired\":\"1\",\"fieldErrorMessage\":\"\",\"fieldExtra\":[],\"formHash\":\"f89eb54fdc0a516deab36b760158a8d66edefbe8\"}'  class='grunion-field-name-wrap grunion-field-wrap'  data-wp-init='callbacks.initializeField' data-wp-on--jetpack-form-reset='callbacks.initializeField' >\n<label\n\t\t\t\tfor='g1991-name' class=\"grunion-field-label name\" >Name<span class=\"grunion-label-required\" aria-hidden=\"true\">(required)</span></label>\n<input\n\t\t\t\t\ttype='text'\n\t\t\t\t\tname='g1991-name'\n\t\t\t\t\tid='g1991-name'\n\t\t\t\t\tvalue=''\n\n\t\t\t\t\tdata-wp-bind--aria-invalid='state.fieldAriaInvalid'\n\t\t\t\t\tdata-wp-bind--value='state.getFieldValue'\n\t\t\t\t\taria-describedby='g1991-name-text-error-message'\n\t\t\t\t\tdata-wp-on--input='actions.onFieldChange'\n\t\t\t\t\tdata-wp-on--blur='actions.onFieldBlur'\n\t\t\t\t\tdata-wp-class--has-value='state.hasFieldValue'\n\n\t\t\t\t\tclass='name  grunion-field' \n\t\t\t\t\trequired='true' aria-required='true'  />\n \n\t\t\t<div id=\"g1991-name-text-error\" class=\"contact-form__input-error\" data-wp-class--has-errors=\"state.fieldHasErrors\">\n\t\t\t\t<span class=\"contact-form__warning-icon\" aria-hidden=\"true\">\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t\t<path d=\"M8.50015 11.6402H7.50015V10.6402H8.50015V11.6402Z\" />\n\t\t\t\t\t\t<path d=\"M7.50015 9.64018H8.50015V6.30684H7.50015V9.64018Z\" />\n\t\t\t\t\t\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.98331 3.0947C7.42933 2.30177 8.57096 2.30177 9.01698 3.09469L13.8771 11.7349C14.3145 12.5126 13.7525 13.4735 12.8602 13.4735H3.14004C2.24774 13.4735 1.68575 12.5126 2.12321 11.7349L6.98331 3.0947ZM8.14541 3.58496C8.08169 3.47168 7.9186 3.47168 7.85488 3.58496L2.99478 12.2251C2.93229 12.3362 3.01257 12.4735 3.14004 12.4735H12.8602C12.9877 12.4735 13.068 12.3362 13.0055 12.2251L8.14541 3.58496Z\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</span>\n\t\t\t\t<span data-wp-text=\"state.errorMessage\" id=\"g1991-name-text-error-message\"></span>\n\t\t\t</div> \n\t</div>\n\n<div style=\"\"  data-wp-interactive=\"jetpack/form\" data-wp-context='{\"fieldId\":\"g1991-email\",\"fieldType\":\"email\",\"fieldLabel\":\"Email\",\"fieldValue\":\"\",\"fieldPlaceholder\":\"\",\"fieldIsRequired\":\"1\",\"fieldErrorMessage\":\"\",\"fieldExtra\":[],\"formHash\":\"f89eb54fdc0a516deab36b760158a8d66edefbe8\"}'  class='grunion-field-email-wrap grunion-field-wrap'  data-wp-init='callbacks.initializeField' data-wp-on--jetpack-form-reset='callbacks.initializeField' >\n<label\n\t\t\t\tfor='g1991-email' class=\"grunion-field-label email\" >Email<span class=\"grunion-label-required\" aria-hidden=\"true\">(required)</span></label>\n<input\n\t\t\t\t\ttype='email'\n\t\t\t\t\tname='g1991-email'\n\t\t\t\t\tid='g1991-email'\n\t\t\t\t\tvalue=''\n\n\t\t\t\t\tdata-wp-bind--aria-invalid='state.fieldAriaInvalid'\n\t\t\t\t\tdata-wp-bind--value='state.getFieldValue'\n\t\t\t\t\taria-describedby='g1991-email-email-error-message'\n\t\t\t\t\tdata-wp-on--input='actions.onFieldChange'\n\t\t\t\t\tdata-wp-on--blur='actions.onFieldBlur'\n\t\t\t\t\tdata-wp-class--has-value='state.hasFieldValue'\n\n\t\t\t\t\tclass='email  grunion-field' \n\t\t\t\t\trequired='true' aria-required='true'  />\n \n\t\t\t<div id=\"g1991-email-email-error\" class=\"contact-form__input-error\" data-wp-class--has-errors=\"state.fieldHasErrors\">\n\t\t\t\t<span class=\"contact-form__warning-icon\" aria-hidden=\"true\">\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t\t<path d=\"M8.50015 11.6402H7.50015V10.6402H8.50015V11.6402Z\" />\n\t\t\t\t\t\t<path d=\"M7.50015 9.64018H8.50015V6.30684H7.50015V9.64018Z\" />\n\t\t\t\t\t\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.98331 3.0947C7.42933 2.30177 8.57096 2.30177 9.01698 3.09469L13.8771 11.7349C14.3145 12.5126 13.7525 13.4735 12.8602 13.4735H3.14004C2.24774 13.4735 1.68575 12.5126 2.12321 11.7349L6.98331 3.0947ZM8.14541 3.58496C8.08169 3.47168 7.9186 3.47168 7.85488 3.58496L2.99478 12.2251C2.93229 12.3362 3.01257 12.4735 3.14004 12.4735H12.8602C12.9877 12.4735 13.068 12.3362 13.0055 12.2251L8.14541 3.58496Z\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</span>\n\t\t\t\t<span data-wp-text=\"state.errorMessage\" id=\"g1991-email-email-error-message\"></span>\n\t\t\t</div> \n\t</div>\n\n<div style=\"\"  data-wp-interactive=\"jetpack/form\" data-wp-context='{\"fieldId\":\"g1991-website\",\"fieldType\":\"url\",\"fieldLabel\":\"Website\",\"fieldValue\":\"\",\"fieldPlaceholder\":\"\",\"fieldIsRequired\":\"\",\"fieldErrorMessage\":\"\",\"fieldExtra\":[],\"formHash\":\"f89eb54fdc0a516deab36b760158a8d66edefbe8\"}'  class='grunion-field-url-wrap grunion-field-wrap'  data-wp-init='callbacks.initializeField' data-wp-on--jetpack-form-reset='callbacks.initializeField' >\n<label\n\t\t\t\tfor='g1991-website' class=\"grunion-field-label url\" >Website</label>\n<input\n\t\t\t\t\ttype='text'\n\t\t\t\t\tname='g1991-website'\n\t\t\t\t\tid='g1991-website'\n\t\t\t\t\tvalue=''\n\n\t\t\t\t\tdata-wp-bind--aria-invalid='state.fieldAriaInvalid'\n\t\t\t\t\tdata-wp-bind--value='state.getFieldValue'\n\t\t\t\t\taria-describedby='g1991-website-text-error-message'\n\t\t\t\t\tdata-wp-on--input='actions.onFieldChange'\n\t\t\t\t\tdata-wp-on--blur='actions.onFieldBlur'\n\t\t\t\t\tdata-wp-class--has-value='state.hasFieldValue'\n\n\t\t\t\t\tclass='url  grunion-field' \n\t\t\t\t\t />\n \n\t\t\t<div id=\"g1991-website-text-error\" class=\"contact-form__input-error\" data-wp-class--has-errors=\"state.fieldHasErrors\">\n\t\t\t\t<span class=\"contact-form__warning-icon\" aria-hidden=\"true\">\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t\t<path d=\"M8.50015 11.6402H7.50015V10.6402H8.50015V11.6402Z\" />\n\t\t\t\t\t\t<path d=\"M7.50015 9.64018H8.50015V6.30684H7.50015V9.64018Z\" />\n\t\t\t\t\t\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.98331 3.0947C7.42933 2.30177 8.57096 2.30177 9.01698 3.09469L13.8771 11.7349C14.3145 12.5126 13.7525 13.4735 12.8602 13.4735H3.14004C2.24774 13.4735 1.68575 12.5126 2.12321 11.7349L6.98331 3.0947ZM8.14541 3.58496C8.08169 3.47168 7.9186 3.47168 7.85488 3.58496L2.99478 12.2251C2.93229 12.3362 3.01257 12.4735 3.14004 12.4735H12.8602C12.9877 12.4735 13.068 12.3362 13.0055 12.2251L8.14541 3.58496Z\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</span>\n\t\t\t\t<span data-wp-text=\"state.errorMessage\" id=\"g1991-website-text-error-message\"></span>\n\t\t\t</div> \n\t</div>\n\n<div style=\"\"  data-wp-interactive=\"jetpack/form\" data-wp-context='{\"fieldId\":\"g1991-comment\",\"fieldType\":\"textarea\",\"fieldLabel\":\"Comment\",\"fieldValue\":\"\",\"fieldPlaceholder\":\"\",\"fieldIsRequired\":\"1\",\"fieldErrorMessage\":\"\",\"fieldExtra\":[],\"formHash\":\"f89eb54fdc0a516deab36b760158a8d66edefbe8\"}'  class='grunion-field-textarea-wrap grunion-field-wrap'  data-wp-init='callbacks.initializeField' data-wp-on--jetpack-form-reset='callbacks.initializeField' >\n<label\n\t\t\t\tfor='contact-form-comment-g1991-comment' class=\"grunion-field-label textarea\" >Comment<span class=\"grunion-label-required\" aria-hidden=\"true\">(required)</span></label>\n<textarea\n\t\t                style=''\n\t\t                name='g1991-comment'\n\t\t                id='contact-form-comment-g1991-comment'\n\t\t                rows='20'\n\t\t\t\t\t\tdata-wp-text='state.getFieldValue'\n\t\t\t\t\t\tdata-wp-on--input='actions.onFieldChange'\n\t\t\t\t\t\tdata-wp-on--blur='actions.onFieldBlur'\n\t\t\t\t\t\tdata-wp-class--has-value='state.hasFieldValue'\n\t\t\t\t\t\taria-describedby='g1991-comment-textarea-error-message'\n\t\t\t\t\t\tdata-wp-bind--aria-invalid='state.fieldAriaInvalid'\n\t\t\t\t\t\tclass='textarea  grunion-field'  required aria-required='true'></textarea>\n \n\t\t\t<div id=\"g1991-comment-textarea-error\" class=\"contact-form__input-error\" data-wp-class--has-errors=\"state.fieldHasErrors\">\n\t\t\t\t<span class=\"contact-form__warning-icon\" aria-hidden=\"true\">\n\t\t\t\t\t<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t\t<path d=\"M8.50015 11.6402H7.50015V10.6402H8.50015V11.6402Z\" />\n\t\t\t\t\t\t<path d=\"M7.50015 9.64018H8.50015V6.30684H7.50015V9.64018Z\" />\n\t\t\t\t\t\t<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M6.98331 3.0947C7.42933 2.30177 8.57096 2.30177 9.01698 3.09469L13.8771 11.7349C14.3145 12.5126 13.7525 13.4735 12.8602 13.4735H3.14004C2.24774 13.4735 1.68575 12.5126 2.12321 11.7349L6.98331 3.0947ZM8.14541 3.58496C8.08169 3.47168 7.9186 3.47168 7.85488 3.58496L2.99478 12.2251C2.93229 12.3362 3.01257 12.4735 3.14004 12.4735H12.8602C12.9877 12.4735 13.068 12.3362 13.0055 12.2251L8.14541 3.58496Z\" />\n\t\t\t\t\t</svg>\n\t\t\t\t</span>\n\t\t\t\t<span data-wp-text=\"state.errorMessage\" id=\"g1991-comment-textarea-error-message\"></span>\n\t\t\t</div>\n\t</div>\n\t<p class='contact-submit'>\n<div class=\"contact-form__error\" data-wp-class--show-errors=\"state.showFormErrors\"><span class=\"contact-form__warning-icon\" aria-hidden=\"true\"><i></i></span><span class=\"contact-form__error-message\" tabindex=\"-1\" data-wp-watch=\"callbacks.focusOnValidationError\" data-wp-text=\"state.getFormErrorMessage\"></span><ul aria-label=\"Form errors\">\n\t\t\t\t<template data-wp-each=\"state.getErrorList\" data-wp-key=\"context.item.id\">\n\t\t\t\t\t<li><a data-wp-bind--href=\"context.item.anchor\" data-wp-on--click=\"actions.scrollIntoView\" data-wp-text=\"context.item.label\"></a></li>\n\t\t\t\t</template>\n\t\t\t\t</ul></div><div class=\"contact-form__error\" data-wp-class--show-errors=\"state.showSubmissionError\" data-wp-text=\"context.submissionError\" tabindex=\"-1\" data-wp-watch=\"callbacks.focusOnSubmissionError\"></div>\t\t<button type='submit' class='pushbutton-wide'>Submit</button>\t\t<input type='hidden' name='contact-form-id' value='1991' />\n\t\t<input type='hidden' name='action' value='grunion-contact-form' />\n\t\t<input type='hidden' name='contact-form-hash' value='f89eb54fdc0a516deab36b760158a8d66edefbe8' />\n\t</p>\n</form>\n</div></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This is just a short excerpt for the contact&nbsp;page.</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 21,
+    "parent": 0,
+    "menu_order": 2,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": {
+      "om_disable_all_campaigns": false,
+      "_monsterinsights_skip_tracking": false,
+      "footnotes": ""
+    },
+    "class_list": [
+      "post-1991",
+      "page",
+      "type-page",
+      "status-publish",
+      "has-post-thumbnail",
+      "hentry"
+    ],
+    "jetpack_sharing_enabled": false,
+    "_links": {
+      "self": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1991",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/comments?post=1991"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/pages/1991/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media/21"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://gauthamsurakanti.com/wp-json/wp/v2/media?parent=1991"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]
