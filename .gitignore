@@ -1,7 +1,8 @@
-.env
-.env.local
-.env.*.local
+.env*
+.DS_Store
+.claude/
 dist/
-backup/private/
+backup/
+archive/raw/
 node_modules/
 release/
