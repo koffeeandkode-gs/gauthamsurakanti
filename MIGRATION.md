@@ -9,7 +9,7 @@ Migrate `gauthamsurakanti.com` from WordPress on Hostinger to a read-only, GitHu
 | Item | Finding |
 | --- | --- |
 | Domain | GoDaddy registration expires **12 February 2027**; auto-renew is off. This is separate from Hostinger hosting. |
-| DNS | GoDaddy nameservers `ns23.domaincontrol.com` and `ns24.domaincontrol.com`; apex points to Hostinger `141.136.43.20`. |
+| DNS | GoDaddy nameservers `ns23.domaincontrol.com` and `ns24.domaincontrol.com`; apex points to Hostinger `141.136.43.20`. Preserve TXT `google-site-verification=qwzITg4AvoAPbadFslYZn1ZVT-u_8rzjpbJOM0JdTgs`. |
 | Email | No `@gauthamsurakanti.com` inboxes in use; public DNS has no MX record. Preserve the existing Google site verification TXT record when moving DNS. |
 | Published content | 56 posts, 16 pages, 294 public media records. |
 | Full private backup | 117 posts (56 published, 59 drafts, 2 private), 20 pages, 300 original media files, 3,629 comments (25 approved, 3,604 held). Saved under gitignored `backup/private/`. The current 145 MB archive is `backup/private/wordpress-backup-2026-10-16.tar.gz` (SHA-256 `889ab2adaa03bc5a1c1647d902fa29e4cb6cc97c1442ae45781bab0ad598200d`). |
