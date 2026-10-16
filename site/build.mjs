@@ -103,12 +103,12 @@ function content(item) {
 }
 function layout({ title, description: summary, canonical, body, type = 'website', image = '', noindex = false }) {
   const fullTitle = title === 'Define or Defy' ? title : `${title} · Define or Defy`;
-  const url = origin + canonical;
+  const url = canonical ? origin + canonical : '';
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(fullTitle)}</title><meta name="description" content="${escape(summary)}">
-<link rel="canonical" href="${escape(url)}"><link rel="alternate" type="application/rss+xml" title="Define or Defy RSS" href="/rss.xml">
-<meta property="og:type" content="${type}"><meta property="og:title" content="${escape(fullTitle)}"><meta property="og:description" content="${escape(summary)}"><meta property="og:url" content="${escape(url)}">${image ? `<meta property="og:image" content="${escape(image.startsWith('/') ? origin + image : image)}">` : ''}
+${url ? `<link rel="canonical" href="${escape(url)}">` : ''}<link rel="alternate" type="application/rss+xml" title="Define or Defy RSS" href="/rss.xml">
+<meta property="og:type" content="${type}"><meta property="og:title" content="${escape(fullTitle)}"><meta property="og:description" content="${escape(summary)}">${url ? `<meta property="og:url" content="${escape(url)}">` : ''}${image ? `<meta property="og:image" content="${escape(image.startsWith('/') ? origin + image : image)}">` : ''}
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head>
 <body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a><a href="/search/">Search</a></nav></div></header>
 <main id="main" class="shell">${body}</main><footer class="site-footer"><div class="shell footer-inner"><p>Define or Defy · Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer></body></html>`;
@@ -137,6 +137,7 @@ const homeBody = `<section class="home-hero"><div><p class="eyebrow">Start here<
 <section class="home-intro"><div class="section-heading"><p class="eyebrow">A note from Gautham</p><h2>Define or Defy</h2></div><div class="prose">${content(home)}</div></section>
 <section class="recent"><div class="section-heading row"><div><p class="eyebrow">The latest</p><h2>Recent writing</h2></div><a class="text-link" href="/all-articles-by-date/">View every article <span aria-hidden="true">→</span></a></div><div class="cards">${posts.slice(0, 6).map(card).join('')}</div></section>`;
 await write('/', layout({ title: 'Define or Defy', description: description(home), canonical: '/', body: homeBody }));
+await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not found', description: 'The requested page could not be found.', noindex: true, body: `${pageHead('404', 'That page is missing')}<div class="prose page-prose"><p>The link may have changed. Browse <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">start page</a>.</p></div>` }));
 
 for (const post of posts) {
   const title = plain(post.title.rendered);

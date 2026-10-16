@@ -25,11 +25,13 @@ for (const asset of assets) {
   if (!stat?.size) failures.push(`Missing media: ${asset.target}`);
   if (stat?.size > 25 * 1024 * 1024) failures.push(`Oversize media: ${asset.target}`);
 }
-for (const required of ['sitemap.xml', 'rss.xml', 'robots.txt', 'style.css', 'favicon.svg', 'search.js', 'search-index.json']) {
+for (const required of ['404.html', 'sitemap.xml', 'rss.xml', 'robots.txt', 'style.css', 'favicon.svg', 'search.js', 'search-index.json']) {
   if (!await fs.stat(path.join(dist, required)).catch(() => null)) failures.push(`Missing output: ${required}`);
 }
 const home = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 if (!home.includes('Define or Defy') || !home.includes('/all-articles-by-date/')) failures.push('Homepage navigation incomplete');
+const notFound = await fs.readFile(path.join(dist, '404.html'), 'utf8');
+if (!notFound.includes('name="robots" content="noindex"') || notFound.includes('rel="canonical"')) failures.push('404 page indexing metadata is wrong');
 const sitemap = await fs.readFile(path.join(dist, 'sitemap.xml'), 'utf8');
 for (const post of posts) if (!sitemap.includes(`https://gauthamsurakanti.com/${post.slug}/`)) failures.push(`Sitemap missing ${post.slug}`);
 let htmlCount = 0;
