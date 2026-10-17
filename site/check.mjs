@@ -54,6 +54,8 @@ async function checkLinks(dir) {
     htmlCount++;
     const html = await fs.readFile(file, 'utf8');
     const visibleHtml = html.replace(/<!--[\s\S]*?-->/g, '');
+    const headingCount = [...visibleHtml.matchAll(/<h1(?:\s|>)/gi)].length;
+    if (headingCount !== 1) failures.push(`Expected one page title in ${path.relative(dist, file)}, found ${headingCount}`);
     if (/\[youtube\s+https?:\/\//i.test(visibleHtml)) failures.push(`Unrendered video link in ${path.relative(dist, file)}`);
     if (/<a\b(?![^>]*\bhref\s*=)[^>]*>/i.test(visibleHtml)) failures.push(`Anchor without a destination in ${path.relative(dist, file)}`);
     for (const match of visibleHtml.matchAll(/\b(?:href|src|poster)=["']([^"']+)["']/gi)) {

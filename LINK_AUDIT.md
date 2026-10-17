@@ -1,4 +1,4 @@
-# Post hyperlink audit — 16 October 2026
+# Hyperlink audit — 16–17 October 2026
 
 I checked the rendered bodies of all 56 published posts. This covered every anchor in the posts, local destinations, URL-like text outside anchors, and the 311 distinct external destinations in the original build. External URLs were checked with redirects, and non-200 results were retried with GET because some sites reject HEAD. A successful response only establishes that a destination responds; I also checked the context of every proposed replacement.
 
@@ -42,3 +42,17 @@ These ten distinct URLs returned 404/410 or no DNS response. I found no verified
 - The Amazon, LinkedIn, and Facebook links flagged by the HEAD pass returned 200 with GET.
 
 After the fixes, the rendered posts contain 380 anchors, all with nonempty destinations; no raw YouTube shortcode remains. The site's local-link check passes across all 164 generated HTML files. External sites can change again, so this report records the results on the date above.
+
+## Full live site follow-up — 17 October 2026
+
+I checked all 335 distinct external destinations linked from the Cloudflare Pages preview, including posts, pages, navigation, and archives. HEAD requests were followed by GET for failed or ambiguous responses. I also checked all 425 distinct local targets. The 163 live HTML routes and 294 non-HTML local files matched the build byte for byte before these follow-up fixes.
+
+Three additional links needed correction:
+
+| Source | Original problem | Verified replacement |
+| --- | --- | --- |
+| `/services/` | `http://Road to Paris: Countdown to D-Day` was a malformed URL | The published local post `/road-to-paris-countdown-to-d-day/` |
+| `/prompts/` | James Altucher's old Idea Machine URL returned 404 | The same article on `archive.jamesaltucher.com` |
+| `/week-1070/` | James Altucher's old Tim Ferriss URL returned 404 | The matching Tim Ferriss podcast page on `archive.jamesaltucher.com` |
+
+Both replacement archive pages returned HTTP 200 on 17 October. The ten historical links listed above are still unavailable. Automated requests to 28 other destinations returned 403; those were kept because the sites may block bots. The Huffington Post URL returned 406, and `booksoncode.com` had a TLS certificate mismatch. These need manual browser review before changing any link target.

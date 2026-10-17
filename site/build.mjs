@@ -108,6 +108,8 @@ function rewriteUrl(raw) {
 }
 function content(item) {
   return (item.content?.rendered || '')
+    .replace(/<h1(?=[\s>])([^>]*)>/gi, '<h2$1>')
+    .replace(/<\/h1\s*>/gi, '</h2>')
     .replace(/\[youtube\s+(https?:\/\/www\.youtube\.com\/watch\?[^\]\s]+)\]/gi, (_, raw) => {
       const video = new URL(decode(raw));
       const id = video.searchParams.get('v');
