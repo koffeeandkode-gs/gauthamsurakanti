@@ -137,7 +137,7 @@ function layout({ title, description: summary, canonical, body, type = 'website'
 ${url ? `<link rel="canonical" href="${escape(url)}">` : ''}<link rel="alternate" type="application/rss+xml" title="Define or Defy RSS" href="/rss.xml">
 <meta property="og:type" content="${type}"><meta property="og:title" content="${escape(fullTitle)}"><meta property="og:description" content="${escape(summary)}">${url ? `<meta property="og:url" content="${escape(url)}">` : ''}${image ? `<meta property="og:image" content="${escape(image.startsWith('/') ? origin + image : image)}">` : ''}
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a><a href="/search/">Search</a></nav></div></header>
+<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/tech/">Tech</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a></nav></div></header>
 <main id="main" class="shell">${body}</main><footer class="site-footer"><div class="shell footer-inner"><p>Define or Defy · Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer></body></html>`;
 }
 async function write(urlPath, value) {
@@ -213,6 +213,8 @@ for (const post of posts) {
 const archiveBody = `${pageHead('The archive', 'All articles by date', `${posts.length} published pieces, from ${posts.at(-1)?.date.slice(0, 4)} to ${posts[0]?.date.slice(0, 4)}.`)}<div class="archive">${[...months].map(([month, items]) => `<section><h2 id="${month}">${new Intl.DateTimeFormat('en-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`))}</h2>${articleList(items)}</section>`).join('')}</div>`;
 await write('/all-articles-by-date/', layout({ title: 'All articles by date', description: 'Every published article on Define or Defy, in date order.', canonical: '/all-articles-by-date/', body: archiveBody }));
 
+const techPosts = posts.filter(post => post.categories.some(id => categoryById.get(id)?.slug === 'tech'));
+
 for (const page of pages) {
   if (['an-introduction', 'all-articles-by-date'].includes(page.slug)) continue;
   const title = plain(page.title.rendered);
@@ -220,12 +222,13 @@ for (const page of pages) {
   if (page.slug === 'contact') html = '<p>The old contact form is retired. You can reach me on <a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a>.</p>';
   if (page.slug === 'sample-page') html = '<p>This WordPress sample page is retired. Explore <a href="/all-articles-by-date/">all articles</a>.</p>';
   if (!plain(html)) html = `<p>Explore <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">start page</a>.</p>`;
-  const body = `${pageHead('Define or Defy', title)}<div class="prose page-prose">${html}</div>`;
+  const techWriting = page.slug === 'tech' && techPosts.length
+    ? `<section aria-labelledby="tech-writing"><div class="section-heading"><h2 id="tech-writing">Latest tech articles</h2></div>${articleList(techPosts)}</section>`
+    : '';
+  const body = `${pageHead('Define or Defy', title)}${techWriting}<div class="prose page-prose">${html}</div>`;
   await write(`/${page.slug}/`, layout({ title, description: description(page) || `${title} on Define or Defy.`, canonical: `/${page.slug}/`, body, noindex: page.slug === 'sample-page' }));
 }
 
-await write('/search/', layout({ title: 'Search', description: 'Search articles on Define or Defy.', canonical: '/search/', noindex: true, body: `${pageHead('Find a story', 'Search articles')}<form class="search-form" action="/search/" method="get" role="search"><label for="query">Search by title or topic</label><div><input id="query" name="q" type="search" autocomplete="off" required><button type="submit">Search</button></div></form><div id="search-results" class="search-results" aria-live="polite"></div><noscript><p>Search needs JavaScript. You can browse <a href="/all-articles-by-date/">all articles</a>.</p></noscript><script defer src="/search.js"></script>` }));
-await fs.writeFile(path.join(output, 'search-index.json'), JSON.stringify(posts.map(post => ({ title: plain(post.title.rendered), url: postUrl(post), date: dateLabel(post.date), description: description(post), text: plain(post.content.rendered) }))));
 
 for (const category of categories) {
   const items = posts.filter(post => post.categories.includes(category.id));

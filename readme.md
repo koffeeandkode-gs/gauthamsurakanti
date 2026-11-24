@@ -22,6 +22,8 @@ The build reads only published WordPress content, approved public comments in `a
 
 The theme lives in `site/style.css`; routes and templates live in `site/build.mjs`.
 
+The public `/tech/` route shows the existing Engineering Notes page from the migrated content, including links to KoffeeAndKode. Published posts with `categories: ["Tech"]` appear above that content, newest first. It is linked as Tech in the main navigation and included in the sitemap. Search has been removed; readers can browse Tech or All Articles.
+
 ## WordPress sync while Hostinger is active
 
 ```sh
