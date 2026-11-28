@@ -43,7 +43,19 @@ for (const removed of ['search', 'search.js', 'search-index.json']) {
   if (await fs.stat(path.join(dist, removed)).catch(() => null)) failures.push(`Removed search output remains: ${removed}`);
 }
 const home = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
-if (!home.includes('Define or Defy') || !home.includes('/all-articles-by-date/') || !home.includes('href="/tech/"') || home.includes('href="/search/"')) failures.push('Homepage navigation incomplete');
+const headMatch = home.match(/<head[\s\S]*?<\/head>/i);
+const visibleHome = home.replace(/<head[\s\S]*?<\/head>/i, '').replace(/<!--[\s\S]*?-->/g, '');
+if (!home.includes('<title>Define or Defy</title>')) failures.push('Homepage title tag missing');
+if (!visibleHome.includes('<h1>Gautham Surakanti</h1>') && !visibleHome.includes('<h1 class="masthead">Gautham Surakanti</h1>')) failures.push('Homepage H1 missing Gautham Surakanti');
+if (!visibleHome.includes('href="/all-articles-by-date/"') || !visibleHome.includes('href="/tech/"') || !visibleHome.includes('href="/about/"')) failures.push('Homepage navigation incomplete');
+if (!visibleHome.includes('Me in 30 seconds') || !visibleHome.includes('WORK') || !visibleHome.includes('LIFE') || !visibleHome.includes('Recent writing')) failures.push('Homepage missing required sections');
+if (!visibleHome.includes('https://youtu.be/0sTh_8II0uI') || !visibleHome.includes('https://www.youtube.com/watch?v=b3RvlYSnRRk') || !visibleHome.includes('/media/gautham-surakanti-portrait.jpeg')) failures.push('Homepage media destinations missing');
+if (!visibleHome.includes('alt="Gautham Surakanti hiking with a backpack and trekking poles"')) failures.push('Portrait missing required alt text');
+if (!visibleHome.includes('https://www.strava.com/athletes/19678138') || !visibleHome.includes('href="/rss.xml"') || !visibleHome.includes('href="/contact/"')) failures.push('Homepage footer links incomplete');
+if (visibleHome.includes('Define or Defy') || visibleHome.includes('Start Here') || visibleHome.includes('A note from Gautham') || visibleHome.includes('hero-mark') || visibleHome.includes('post-card') || visibleHome.includes('/search/')) failures.push('Homepage contains obsolete visible content');
+const homeArticles = [...visibleHome.matchAll(/<article>/gi)].length;
+const expectedHomeArticles = Math.min(4, posts.length);
+if (homeArticles !== expectedHomeArticles) failures.push(`Expected ${expectedHomeArticles} articles on homepage, found ${homeArticles}`);
 const notFound = await fs.readFile(path.join(dist, '404.html'), 'utf8');
 if (!notFound.includes('name="robots" content="noindex"') || notFound.includes('rel="canonical"')) failures.push('404 page indexing metadata is wrong');
 const sitemap = await fs.readFile(path.join(dist, 'sitemap.xml'), 'utf8');

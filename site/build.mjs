@@ -83,7 +83,7 @@ function decode(value = '') {
 }
 function plain(value = '') { return decode(String(value).replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim(); }
 function escape(value = '') { return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]); }
-function dateLabel(value) { return new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(value + 'Z')); }
+function dateLabel(value, { compact = false } = {}) { return new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: compact ? 'short' : 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(value + 'Z')); }
 function postUrl(post) { return `/${post.slug}/`; }
 function description(item) { return plain(item.excerpt?.rendered || item.content?.rendered || '').slice(0, 160); }
 function feature(item) {
@@ -128,29 +128,38 @@ function content(item) {
     .replace(/<a\b[^>]*class="[^"]*wp-block-jetpack-slideshow_button-(?:prev|next|pause)[^"]*"[^>]*>\s*<\/a>/gi, '')
     .replace(/<form\b[^>]*>[\s\S]*?<\/form>/gi, '');
 }
-function layout({ title, description: summary, canonical, body, type = 'website', image = '', noindex = false }) {
+function layout({ title, description: summary, canonical, body, type = 'website', image = '', noindex = false, isHome = false }) {
   const fullTitle = title === 'Define or Defy' ? title : `${title} · Define or Defy`;
   const url = canonical ? origin + canonical : '';
+  const bodyTag = isHome ? '<body class="home">' : '<body>';
+  const headerHtml = isHome
+    ? `<header class="site-header home-header"><div class="shell header-inner home-header-inner"><h1 class="masthead">Gautham Surakanti</h1><nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a></nav></div></header>`
+    : `<header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/tech/">Tech</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a></nav></div></header>`;
+  const footerHtml = isHome
+    ? `<footer class="site-footer home-footer"><div class="shell footer-inner home-footer-inner"><div class="footer-links"><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.strava.com/athletes/19678138">Strava</a></div></div></footer>`
+    : `<footer class="site-footer"><div class="shell footer-inner"><p>Define or Defy · Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(fullTitle)}</title><meta name="description" content="${escape(summary)}">
 ${url ? `<link rel="canonical" href="${escape(url)}">` : ''}<link rel="alternate" type="application/rss+xml" title="Define or Defy RSS" href="/rss.xml">
 <meta property="og:type" content="${type}"><meta property="og:title" content="${escape(fullTitle)}"><meta property="og:description" content="${escape(summary)}">${url ? `<meta property="og:url" content="${escape(url)}">` : ''}${image ? `<meta property="og:image" content="${escape(image.startsWith('/') ? origin + image : image)}">` : ''}
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/tech/">Tech</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a></nav></div></header>
-<main id="main" class="shell">${body}</main><footer class="site-footer"><div class="shell footer-inner"><p>Define or Defy · Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer></body></html>`;
+${bodyTag}<a class="skip" href="#main">Skip to content</a>${headerHtml}
+<main id="main" class="shell">${body}</main>${footerHtml}</body></html>`;
 }
 async function write(urlPath, value) {
   const file = urlPath === '/' ? path.join(output, 'index.html') : path.join(output, decodeURIComponent(urlPath.slice(1)), 'index.html');
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, value);
 }
-function card(post) {
-  const title = plain(post.title.rendered);
-  const image = feature(post);
-  return `<article class="post-card">${image ? `<a class="card-image" href="${postUrl(post)}"><img src="${escape(image)}" alt="" loading="lazy"></a>` : ''}<div><p class="eyebrow"><time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date)}</time></p><h3><a href="${postUrl(post)}">${escape(title)}</a></h3><p>${escape(description(post).slice(0, 190))}</p><a class="text-link" href="${postUrl(post)}">Read article <span aria-hidden="true">→</span></a></div></article>`;
+function articleList(items, { compact = false, titleFirst = false, className = '' } = {}) {
+  const classes = ['article-list', className].filter(Boolean).join(' ');
+  return `<div class="${classes}">${items.map(post => {
+    const timeHtml = `<time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date, { compact })}</time>`;
+    const titleHtml = `<h3><a href="${postUrl(post)}">${escape(plain(post.title.rendered))}</a></h3>`;
+    return `<article>${titleFirst ? titleHtml + timeHtml : timeHtml + titleHtml}</article>`;
+  }).join('')}</div>`;
 }
-function articleList(items) { return `<div class="article-list">${items.map(post => `<article><time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date)}</time><h3><a href="${postUrl(post)}">${escape(plain(post.title.rendered))}</a></h3></article>`).join('')}</div>`; }
 function pageHead(kicker, title, intro = '') { return `<section class="page-head"><p class="eyebrow">${escape(kicker)}</p><h1>${escape(title)}</h1>${intro ? `<p class="lead">${escape(intro)}</p>` : ''}</section>`; }
 function taxonomyLink(category) { return `<a href="/category/${encodeURIComponent(category.slug)}/">${escape(plain(category.name))}</a>`; }
 function commentBody(raw) {
@@ -197,10 +206,9 @@ await fs.cp(path.join(root, 'site/public'), output, { recursive: true, force: tr
 await fs.copyFile(path.join(root, 'site/style.css'), path.join(output, 'style.css'));
 
 const home = pageBySlug.get('an-introduction');
-const homeBody = `<section class="home-hero"><div><p class="eyebrow">Start here</p><h1>A life in lessons, stories and takeaways.</h1><p class="lead">Thoughts on endurance, work, speaking and the things learned along the way.</p><a class="button" href="/all-articles-by-date/">Explore the writing <span aria-hidden="true">→</span></a></div><div class="hero-mark" aria-hidden="true">D<span>/</span>D</div></section>
-<section class="home-intro"><div class="section-heading"><p class="eyebrow">A note from Gautham</p><h2>Define or Defy</h2></div><div class="prose">${content(home)}</div></section>
-<section class="recent"><div class="section-heading row"><div><p class="eyebrow">The latest</p><h2>Recent writing</h2></div><a class="text-link" href="/all-articles-by-date/">View every article <span aria-hidden="true">→</span></a></div><div class="cards">${posts.slice(0, 6).map(card).join('')}</div></section>`;
-await write('/', layout({ title: 'Define or Defy', description: description(home), canonical: '/', body: homeBody }));
+const homeBody = `<section class="profile-section"><h2 class="profile-heading">Me in 30 seconds</h2><div class="profile-layout"><div class="profile-text"><h3 class="profile-subheading">WORK</h3><p class="profile-role">Technical Lead · Backend Engineering · Distributed Systems · AI/LLM Platforms</p><p class="profile-work-p">I’m currently helping modernize billing for a large-scale mobility platform, where I design and build backend systems.</p><h3 class="profile-subheading">LIFE</h3><p>I’m an endurance cyclist and runner, a Telangana State Cycling Champion (2023, 2025), and a finisher of the 1,230 km Paris–Brest–Paris. I also enjoy public speaking and was runner-up in a state-level Toastmasters contest.</p><p>I enjoy reading books and listening to podcasts. I also play frisbee, badminton and chess, and enjoy quizzing.</p><div class="profile-links"><div class="profile-videos"><a href="https://youtu.be/0sTh_8II0uI">Toastmasters speech</a><a href="https://www.youtube.com/watch?v=b3RvlYSnRRk">Video on YouTube</a></div><a class="profile-about" href="/about/">Me in 10 minutes</a></div></div><div class="profile-portrait"><img src="/media/gautham-surakanti-portrait.jpeg" width="800" height="800" alt="Gautham Surakanti hiking with a backpack and trekking poles"></div></div></section>
+<section class="home-recent"><h2>Recent writing</h2>${articleList(posts.slice(0, 4), { compact: true, titleFirst: true, className: 'home-article-list' })}<a class="home-archive-link" href="/all-articles-by-date/">All articles</a></section>`;
+await write('/', layout({ title: 'Define or Defy', description: description(home), canonical: '/', body: homeBody, isHome: true }));
 await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not found', description: 'The requested page could not be found.', noindex: true, body: `${pageHead('404', 'That page is missing')}<div class="prose page-prose"><p>The link may have changed. Browse <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">start page</a>.</p></div>` }));
 
 for (const post of posts) {
