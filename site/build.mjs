@@ -132,12 +132,13 @@ function layout({ title, description: summary, canonical, body, type = 'website'
   const fullTitle = title === 'Define or Defy' ? title : `${title} · Define or Defy`;
   const url = canonical ? origin + canonical : '';
   const bodyTag = isHome ? '<body class="home">' : '<body>';
-  const headerHtml = isHome
-    ? `<header class="site-header home-header"><div class="shell header-inner home-header-inner"><h1 class="masthead">Gautham Surakanti</h1><nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a></nav></div></header>`
-    : `<header class="site-header"><div class="shell header-inner"><a class="brand" href="/">Define <span>or</span> Defy<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><a href="/">Start Here</a><a href="/tech/">Tech</a><a href="/all-articles-by-date/">All Articles</a><a href="/guest-posts/">Guest Posts</a><a href="/about/">About</a></nav></div></header>`;
+  const masthead = isHome
+    ? '<h1 class="masthead">Gautham Surakanti</h1>'
+    : '<a class="masthead" href="/">Gautham Surakanti</a>';
+  const headerHtml = `<header class="site-header"><div class="shell header-inner">${masthead}<nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a></nav></div></header>`;
   const footerHtml = isHome
     ? `<footer class="site-footer home-footer"><div class="shell footer-inner home-footer-inner"><div class="footer-links"><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.strava.com/athletes/19678138">Strava</a></div></div></footer>`
-    : `<footer class="site-footer"><div class="shell footer-inner"><p>Define or Defy · Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer>`;
+    : `<footer class="site-footer"><div class="shell footer-inner"><p>Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer>`;
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(fullTitle)}</title><meta name="description" content="${escape(summary)}">
@@ -160,7 +161,9 @@ function articleList(items, { compact = false, titleFirst = false, className = '
     return `<article>${titleFirst ? titleHtml + timeHtml : timeHtml + titleHtml}</article>`;
   }).join('')}</div>`;
 }
-function pageHead(kicker, title, intro = '') { return `<section class="page-head"><p class="eyebrow">${escape(kicker)}</p><h1>${escape(title)}</h1>${intro ? `<p class="lead">${escape(intro)}</p>` : ''}</section>`; }
+function pageHead(kicker, title, intro = '') {
+  return `<section class="page-head">${kicker ? `<p class="eyebrow">${escape(kicker)}</p>` : ''}<h1>${escape(title)}</h1>${intro ? `<p class="lead">${escape(intro)}</p>` : ''}</section>`;
+}
 function taxonomyLink(category) { return `<a href="/category/${encodeURIComponent(category.slug)}/">${escape(plain(category.name))}</a>`; }
 function commentBody(raw) {
   return String(raw)
@@ -209,7 +212,7 @@ const home = pageBySlug.get('an-introduction');
 const homeBody = `<section class="profile-section"><h2 class="profile-heading">Me in 30 seconds</h2><div class="profile-layout"><div class="profile-text"><h3 class="profile-subheading">WORK</h3><p class="profile-role">Technical Lead · Backend Engineering · Distributed Systems · AI/LLM Platforms</p><p class="profile-work-p">I’m currently helping modernize billing for a large-scale mobility platform, where I design and build backend systems.</p><h3 class="profile-subheading">LIFE</h3><p>I’m an endurance cyclist and runner, a Telangana State Cycling Champion (2023, 2025), and a finisher of the 1,230 km Paris–Brest–Paris. I also enjoy public speaking and was runner-up in a state-level Toastmasters contest.</p><p>I enjoy reading books and listening to podcasts. I also play frisbee, badminton and chess, and enjoy quizzing.</p><div class="profile-links"><div class="profile-videos"><a href="https://youtu.be/0sTh_8II0uI">Toastmasters speech</a><a href="https://www.youtube.com/watch?v=b3RvlYSnRRk">Video on YouTube</a></div><a class="profile-about" href="/about/">Me in 10 minutes</a></div></div><div class="profile-portrait"><img src="/media/gautham-surakanti-portrait.jpeg" width="800" height="800" alt="Gautham Surakanti hiking with a backpack and trekking poles"></div></div></section>
 <section class="home-recent"><h2>Recent writing</h2>${articleList(posts.slice(0, 4), { compact: true, titleFirst: true, className: 'home-article-list' })}<a class="home-archive-link" href="/all-articles-by-date/">All articles</a></section>`;
 await write('/', layout({ title: 'Define or Defy', description: description(home), canonical: '/', body: homeBody, isHome: true }));
-await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not found', description: 'The requested page could not be found.', noindex: true, body: `${pageHead('404', 'That page is missing')}<div class="prose page-prose"><p>The link may have changed. Browse <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">start page</a>.</p></div>` }));
+await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not found', description: 'The requested page could not be found.', noindex: true, body: `${pageHead('404', 'That page is missing')}<div class="prose page-prose"><p>The link may have changed. Browse <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">homepage</a>.</p></div>` }));
 
 for (const post of posts) {
   const title = plain(post.title.rendered);
@@ -218,7 +221,7 @@ for (const post of posts) {
   await write(postUrl(post), layout({ title, description: description(post), canonical: postUrl(post), body, type: 'article', image: feature(post) }));
 }
 
-const archiveBody = `${pageHead('The archive', 'All articles by date', `${posts.length} published pieces, from ${posts.at(-1)?.date.slice(0, 4)} to ${posts[0]?.date.slice(0, 4)}.`)}<div class="archive">${[...months].map(([month, items]) => `<section><h2 id="${month}">${new Intl.DateTimeFormat('en-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`))}</h2>${articleList(items)}</section>`).join('')}</div>`;
+const archiveBody = `${pageHead('The archive', 'All articles by date', `${posts.length} published pieces, from ${posts.at(-1)?.date.slice(0, 4)} to ${posts[0]?.date.slice(0, 4)}.`)}<p><a href="/guest-posts/">Guest Posts</a></p><div class="archive">${[...months].map(([month, items]) => `<section><h2 id="${month}">${new Intl.DateTimeFormat('en-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`))}</h2>${articleList(items)}</section>`).join('')}</div>`;
 await write('/all-articles-by-date/', layout({ title: 'All articles by date', description: 'Every published article on Define or Defy, in date order.', canonical: '/all-articles-by-date/', body: archiveBody }));
 
 const techPosts = posts.filter(post => post.categories.some(id => categoryById.get(id)?.slug === 'tech'));
@@ -229,11 +232,11 @@ for (const page of pages) {
   let html = content(page);
   if (page.slug === 'contact') html = '<p>The old contact form is retired. You can reach me on <a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a>.</p>';
   if (page.slug === 'sample-page') html = '<p>This WordPress sample page is retired. Explore <a href="/all-articles-by-date/">all articles</a>.</p>';
-  if (!plain(html)) html = `<p>Explore <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">start page</a>.</p>`;
+  if (!plain(html)) html = `<p>Explore <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">homepage</a>.</p>`;
   const techWriting = page.slug === 'tech' && techPosts.length
     ? `<section aria-labelledby="tech-writing"><div class="section-heading"><h2 id="tech-writing">Latest tech articles</h2></div>${articleList(techPosts)}</section>`
     : '';
-  const body = `${pageHead('Define or Defy', title)}${techWriting}<div class="prose page-prose">${html}</div>`;
+  const body = `${pageHead('', title)}${techWriting}<div class="prose page-prose">${html}</div>`;
   await write(`/${page.slug}/`, layout({ title, description: description(page) || `${title} on Define or Defy.`, canonical: `/${page.slug}/`, body, noindex: page.slug === 'sample-page' }));
 }
 

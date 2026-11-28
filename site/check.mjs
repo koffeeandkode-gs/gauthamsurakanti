@@ -43,11 +43,8 @@ for (const removed of ['search', 'search.js', 'search-index.json']) {
   if (await fs.stat(path.join(dist, removed)).catch(() => null)) failures.push(`Removed search output remains: ${removed}`);
 }
 const home = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
-const headMatch = home.match(/<head[\s\S]*?<\/head>/i);
 const visibleHome = home.replace(/<head[\s\S]*?<\/head>/i, '').replace(/<!--[\s\S]*?-->/g, '');
 if (!home.includes('<title>Define or Defy</title>')) failures.push('Homepage title tag missing');
-if (!visibleHome.includes('<h1>Gautham Surakanti</h1>') && !visibleHome.includes('<h1 class="masthead">Gautham Surakanti</h1>')) failures.push('Homepage H1 missing Gautham Surakanti');
-if (!visibleHome.includes('href="/all-articles-by-date/"') || !visibleHome.includes('href="/tech/"') || !visibleHome.includes('href="/about/"')) failures.push('Homepage navigation incomplete');
 if (!visibleHome.includes('Me in 30 seconds') || !visibleHome.includes('WORK') || !visibleHome.includes('LIFE') || !visibleHome.includes('Recent writing')) failures.push('Homepage missing required sections');
 if (!visibleHome.includes('https://youtu.be/0sTh_8II0uI') || !visibleHome.includes('https://www.youtube.com/watch?v=b3RvlYSnRRk') || !visibleHome.includes('/media/gautham-surakanti-portrait.jpeg')) failures.push('Homepage media destinations missing');
 if (!visibleHome.includes('alt="Gautham Surakanti hiking with a backpack and trekking poles"')) failures.push('Portrait missing required alt text');
@@ -60,6 +57,10 @@ const notFound = await fs.readFile(path.join(dist, '404.html'), 'utf8');
 if (!notFound.includes('name="robots" content="noindex"') || notFound.includes('rel="canonical"')) failures.push('404 page indexing metadata is wrong');
 const sitemap = await fs.readFile(path.join(dist, 'sitemap.xml'), 'utf8');
 for (const post of posts) if (!sitemap.includes(`https://gauthamsurakanti.com/${post.slug}/`)) failures.push(`Sitemap missing ${post.slug}`);
+const archive = await fs.readFile(path.join(dist, 'all-articles-by-date', 'index.html'), 'utf8');
+if (!archive.includes('<a href="/guest-posts/">Guest Posts</a>')) failures.push('Writing archive is missing the Guest Posts link');
+
+const mainNavigation = '<a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a>';
 let htmlCount = 0;
 async function checkLinks(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
@@ -69,6 +70,18 @@ async function checkLinks(dir) {
     htmlCount++;
     const html = await fs.readFile(file, 'utf8');
     const visibleHtml = html.replace(/<!--[\s\S]*?-->/g, '');
+    const route = path.relative(dist, file);
+    const header = visibleHtml.match(/<header class="site-header">([\s\S]*?)<\/header>/)?.[1];
+    const masthead = route === 'index.html'
+      ? '<h1 class="masthead">Gautham Surakanti</h1>'
+      : '<a class="masthead" href="/">Gautham Surakanti</a>';
+    if (!header?.includes(masthead) || !header.includes(`<nav aria-label="Main navigation">${mainNavigation}</nav>`)) {
+      failures.push(`Inconsistent site header in ${route}`);
+    }
+    const footer = visibleHtml.match(/<footer class="site-footer[^"]*">([\s\S]*?)<\/footer>/)?.[1];
+    if (/define or defy/i.test(footer ?? '') || /<p class="eyebrow">Define or Defy<\/p>/i.test(visibleHtml)) {
+      failures.push(`Old site branding in ${route}`);
+    }
     const headingCount = [...visibleHtml.matchAll(/<h1(?:\s|>)/gi)].length;
     if (headingCount !== 1) failures.push(`Expected one page title in ${path.relative(dist, file)}, found ${headingCount}`);
     if (/\[youtube\s+https?:\/\//i.test(visibleHtml)) failures.push(`Unrendered video link in ${path.relative(dist, file)}`);
