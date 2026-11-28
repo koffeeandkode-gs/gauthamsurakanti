@@ -45,14 +45,15 @@ for (const removed of ['search', 'search.js', 'search-index.json']) {
 const home = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 const visibleHome = home.replace(/<head[\s\S]*?<\/head>/i, '').replace(/<!--[\s\S]*?-->/g, '');
 if (!home.includes('<title>Define or Defy</title>')) failures.push('Homepage title tag missing');
-if (!visibleHome.includes('Me in 30 seconds') || !visibleHome.includes('WORK') || !visibleHome.includes('LIFE') || !visibleHome.includes('Recent writing')) failures.push('Homepage missing required sections');
-if (!visibleHome.includes('https://youtu.be/0sTh_8II0uI') || !visibleHome.includes('https://www.youtube.com/watch?v=b3RvlYSnRRk') || !visibleHome.includes('/media/gautham-surakanti-portrait.jpeg')) failures.push('Homepage media destinations missing');
+const sectionOrder = [...visibleHome.matchAll(/<section class="(home-intro|home-recent|home-about)"/g)].map(match => match[1]);
+if (sectionOrder.join(',') !== 'home-intro,home-recent,home-about') failures.push('Homepage intro, recent writing, and about sections must appear in order');
+if (!visibleHome.includes('href="#recent-writing"') || !visibleHome.includes('id="recent-writing" tabindex="-1">Recent writing</h2>')) failures.push('Homepage recent writing link or target missing');
+if (!visibleHome.includes('href="#main"') || !visibleHome.includes('<main id="main" class="shell" tabindex="-1">')) failures.push('Homepage skip link or target missing');
+if (!visibleHome.includes('/media/gautham-surakanti-portrait.jpeg')) failures.push('Homepage portrait missing');
+if (!visibleHome.includes('href="/about/">About me</a>')) failures.push('Homepage About me link missing');
 if (!visibleHome.includes('alt="Gautham Surakanti hiking with a backpack and trekking poles"')) failures.push('Portrait missing required alt text');
 if (!visibleHome.includes('https://www.strava.com/athletes/19678138') || !visibleHome.includes('href="/rss.xml"') || !visibleHome.includes('href="/contact/"')) failures.push('Homepage footer links incomplete');
 if (visibleHome.includes('Define or Defy') || visibleHome.includes('Start Here') || visibleHome.includes('A note from Gautham') || visibleHome.includes('hero-mark') || visibleHome.includes('post-card') || visibleHome.includes('/search/')) failures.push('Homepage contains obsolete visible content');
-const homeArticles = [...visibleHome.matchAll(/<article>/gi)].length;
-const expectedHomeArticles = Math.min(4, posts.length);
-if (homeArticles !== expectedHomeArticles) failures.push(`Expected ${expectedHomeArticles} articles on homepage, found ${homeArticles}`);
 const notFound = await fs.readFile(path.join(dist, '404.html'), 'utf8');
 if (!notFound.includes('name="robots" content="noindex"') || notFound.includes('rel="canonical"')) failures.push('404 page indexing metadata is wrong');
 const sitemap = await fs.readFile(path.join(dist, 'sitemap.xml'), 'utf8');
@@ -62,8 +63,13 @@ for (const slug of ['tech', 'sports', 'musings']) {
 }
 const archive = await fs.readFile(path.join(dist, 'all-articles-by-date', 'index.html'), 'utf8');
 if (!archive.includes('<a href="/guest-posts/">Guest Posts</a>')) failures.push('Writing archive is missing the Guest Posts link');
+const newestArticles = Array.from(archive.matchAll(/<article><time datetime="([^"]+)">[^<]*<\/time><h3><a href="([^"]+)">/g)).slice(0, 4);
+const homeArticles = Array.from(visibleHome.matchAll(/<article><h3><a href="([^"]+)">[^<]*<\/a><\/h3><time datetime="([^"]+)">/g));
+if (homeArticles.length !== newestArticles.length || newestArticles.some(([, date, href], index) =>
+  homeArticles[index]?.[1] !== href || homeArticles[index]?.[2] !== date
+)) failures.push('Homepage must list the four newest published articles, title first');
 
-const mainNavigation = '<a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a>';
+const topicNavigation = '<a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a>';
 let htmlCount = 0;
 async function checkLinks(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
@@ -75,9 +81,11 @@ async function checkLinks(dir) {
     const visibleHtml = html.replace(/<!--[\s\S]*?-->/g, '');
     const route = path.relative(dist, file);
     const header = visibleHtml.match(/<header class="site-header">([\s\S]*?)<\/header>/)?.[1];
-    const masthead = route === 'index.html'
+    const isHome = route === 'index.html';
+    const masthead = isHome
       ? '<h1 class="masthead">Gautham Surakanti</h1>'
       : '<a class="masthead" href="/">Gautham Surakanti</a>';
+    const mainNavigation = `<a href="/all-articles-by-date/">${isHome ? 'All articles' : 'Writing'}</a>${topicNavigation}`;
     if (!header?.includes(masthead) || !header.includes(`<nav aria-label="Main navigation">${mainNavigation}</nav>`)) {
       failures.push(`Inconsistent site header in ${route}`);
     }

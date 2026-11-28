@@ -149,7 +149,7 @@ function layout({ title, description: summary, canonical, body, type = 'website'
   const masthead = isHome
     ? '<h1 class="masthead">Gautham Surakanti</h1>'
     : '<a class="masthead" href="/">Gautham Surakanti</a>';
-  const headerHtml = `<header class="site-header"><div class="shell header-inner">${masthead}<nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a></nav></div></header>`;
+  const headerHtml = `<header class="site-header"><div class="shell header-inner">${masthead}<nav aria-label="Main navigation"><a href="/all-articles-by-date/">${isHome ? 'All articles' : 'Writing'}</a><a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a></nav></div></header>`;
   const footerHtml = isHome
     ? `<footer class="site-footer home-footer"><div class="shell footer-inner home-footer-inner"><div class="footer-links"><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.strava.com/athletes/19678138">Strava</a></div></div></footer>`
     : `<footer class="site-footer"><div class="shell footer-inner"><p>Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer>`;
@@ -160,19 +160,21 @@ ${url ? `<link rel="canonical" href="${escape(url)}">` : ''}<link rel="alternate
 <meta property="og:type" content="${type}"><meta property="og:title" content="${escape(fullTitle)}"><meta property="og:description" content="${escape(summary)}">${url ? `<meta property="og:url" content="${escape(url)}">` : ''}${image ? `<meta property="og:image" content="${escape(image.startsWith('/') ? origin + image : image)}">` : ''}
 ${noindex ? '<meta name="robots" content="noindex">' : ''}<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css"></head>
 ${bodyTag}<a class="skip" href="#main">Skip to content</a>${headerHtml}
-<main id="main" class="shell">${body}</main>${footerHtml}</body></html>`;
+<main id="main" class="shell"${isHome ? ' tabindex="-1"' : ''}>${body}</main>${footerHtml}</body></html>`;
 }
 async function write(urlPath, value) {
   const file = urlPath === '/' ? path.join(output, 'index.html') : path.join(output, decodeURIComponent(urlPath.slice(1)), 'index.html');
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, value);
 }
-function articleList(items, { compact = false, titleFirst = false, className = '' } = {}) {
+function articleList(items, { compact = false, titleFirst = false, className = '', previews } = {}) {
   const classes = ['article-list', className].filter(Boolean).join(' ');
   return `<div class="${classes}">${items.map(post => {
     const timeHtml = `<time datetime="${post.date.slice(0, 10)}">${dateLabel(post.date, { compact })}</time>`;
     const titleHtml = `<h3><a href="${postUrl(post)}">${escape(plain(post.title.rendered))}</a></h3>`;
-    return `<article>${titleFirst ? titleHtml + timeHtml : timeHtml + titleHtml}</article>`;
+    const preview = previews?.get(post.slug);
+    const previewHtml = preview ? `<p class="article-preview">${escape(preview)}</p>` : '';
+    return `<article>${titleFirst ? titleHtml + timeHtml : timeHtml + titleHtml}${previewHtml}</article>`;
   }).join('')}</div>`;
 }
 function pageHead(kicker, title, intro = '') {
@@ -231,8 +233,30 @@ await fs.cp(path.join(root, 'site/public'), output, { recursive: true, force: tr
 await fs.copyFile(path.join(root, 'site/style.css'), path.join(output, 'style.css'));
 
 const home = pageBySlug.get('an-introduction');
-const homeBody = `<section class="profile-section"><h2 class="profile-heading">Me in 30 seconds</h2><div class="profile-layout"><div class="profile-text"><h3 class="profile-subheading">WORK</h3><p class="profile-role">Technical Lead · Backend Engineering · Distributed Systems · AI/LLM Platforms</p><p class="profile-work-p">I’m currently helping modernize billing for a large-scale mobility platform, where I design and build backend systems.</p><h3 class="profile-subheading">LIFE</h3><p>I’m an endurance cyclist and runner, a Telangana State Cycling Champion (2023, 2025), and a finisher of the 1,230 km Paris–Brest–Paris. I also enjoy public speaking and was runner-up in a state-level Toastmasters contest.</p><p>I enjoy reading books and listening to podcasts. I also play frisbee, badminton and chess, and enjoy quizzing.</p><div class="profile-links"><div class="profile-videos"><a href="https://youtu.be/0sTh_8II0uI">Toastmasters speech</a><a href="https://www.youtube.com/watch?v=b3RvlYSnRRk">Video on YouTube</a></div><a class="profile-about" href="/about/">Me in 10 minutes</a></div></div><div class="profile-portrait"><img src="/media/gautham-surakanti-portrait.jpeg" width="800" height="800" alt="Gautham Surakanti hiking with a backpack and trekking poles"></div></div></section>
-<section class="home-recent"><h2>Recent writing</h2>${articleList(posts.slice(0, 4), { compact: true, titleFirst: true, className: 'home-article-list' })}<a class="home-archive-link" href="/all-articles-by-date/">All articles</a></section>`;
+const homeArticles = articleList(posts.slice(0, 4), {
+  compact: true,
+  titleFirst: true,
+  className: 'home-article-list',
+  previews: new Map([
+    ['bar-giving-back-2026', 'Four starts, no podium. On my fifth try at Bangalore’s BAR Giving Back duathlon, I rode 30 km, ran 6 km, and finished third.'],
+  ]),
+});
+const homeBody = `<section class="home-intro" aria-labelledby="home-headline">
+  <h2 id="home-headline">I build backend systems, <em>ride long distances, and run.</em></h2>
+  <p>I write about backend engineering and system design, the races I’ve done, and what I learned along the way. One of those rides was the 1,230 km Paris–Brest–Paris.</p>
+  <img class="home-portrait" src="/media/gautham-surakanti-portrait.jpeg" width="800" height="800" alt="Gautham Surakanti hiking with a backpack and trekking poles">
+  <a class="home-link" href="#recent-writing">Read recent writing <span aria-hidden="true">↓</span></a>
+</section>
+<section class="home-recent" aria-labelledby="recent-writing">
+  <h2 id="recent-writing" tabindex="-1">Recent writing</h2>
+  ${homeArticles}
+  <a class="home-link" href="/all-articles-by-date/">Browse all articles</a>
+</section>
+<section class="home-about" aria-labelledby="home-about">
+  <h2 id="home-about">More about me</h2>
+  <p>I’m a two-time Telangana State Cycling Champion. Away from work and training, I read, listen to podcasts, and enjoy public speaking.</p>
+  <a class="home-link" href="/about/">About me</a>
+</section>`;
 await write('/', layout({ title: 'Define or Defy', description: description(home), canonical: '/', body: homeBody, isHome: true }));
 await fs.writeFile(path.join(output, '404.html'), layout({ title: 'Page not found', description: 'The requested page could not be found.', noindex: true, body: `${pageHead('404', 'That page is missing')}<div class="prose page-prose"><p>The link may have changed. Browse <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">homepage</a>.</p></div>` }));
 
