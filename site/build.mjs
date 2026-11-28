@@ -10,6 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const snapshot = path.join(root, 'archive/public');
 const output = path.join(root, 'dist');
 const origin = 'https://gauthamsurakanti.com';
+const topicLandings = new Set(['sports', 'musings']);
 const read = async name => JSON.parse(await fs.readFile(path.join(snapshot, `${name}.json`)));
 const [posts, pages, categories, tags] = await Promise.all(['posts', 'pages', 'categories', 'tags'].map(read));
 if ([...posts, ...pages].some(item => item.status !== 'publish')) throw new Error('Unpublished content in public snapshot');
@@ -27,6 +28,11 @@ function addTerms(names, terms, idType) {
     return term.id;
   });
 }
+const importedPostCategories = new Map(Object.entries(JSON.parse(await fs.readFile(path.join(root, 'site/post-categories.json'), 'utf8'))));
+for (const post of posts) {
+  const topics = importedPostCategories.get(post.slug);
+  if (topics) post.categories = [...new Set([...post.categories, ...addTerms(topics, categories, 'category')])];
+}
 for (const entry of postFiles) {
   const source = await fs.readFile(path.join(root, 'content/posts', entry.name), 'utf8');
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -42,6 +48,10 @@ for (const entry of postFiles) {
   localPosts.push({ slug: meta.slug, date: `${date}T00:00:00`, status: 'publish', title: { rendered: String(meta.title) }, excerpt: { rendered: meta.description }, content: { rendered: markdown.render(match[2]) }, categories: addTerms(meta.categories || [], categories, 'category'), tags: addTerms(meta.tags || [], tags, 'tag'), featured_media: 0, jetpack_featured_media_url: meta.image || '' });
 }
 const existingSlugs = new Set([...posts, ...pages].map(item => item.slug));
+for (const slug of topicLandings) {
+  if (existingSlugs.has(slug)) throw new Error(`Reserved topic slug: ${slug}`);
+  existingSlugs.add(slug);
+}
 for (const post of localPosts) {
   if (existingSlugs.has(post.slug)) throw new Error(`Duplicate slug: ${post.slug}`);
   existingSlugs.add(post.slug);
@@ -65,6 +75,10 @@ const assetResults = await read('assets').catch(() => []);
 const assetMap = new Map(assetResults.filter(item => item.status !== 'failed').map(item => [item.url, item.target]));
 const linkOverrides = new Map(Object.entries(JSON.parse(await fs.readFile(path.join(root, 'site/link-overrides.json'), 'utf8'))));
 const categoryById = new Map(categories.map(item => [item.id, item]));
+function postsInCategory(slug) {
+  const category = categories.find(item => item.slug === slug);
+  return category ? posts.filter(post => post.categories.includes(category.id)) : [];
+}
 const pageBySlug = new Map(pages.map(item => [item.slug, item]));
 const publishedSlugs = new Map([...posts, ...pages].map(item => [item.slug, item.link === origin + '/' ? '/' : `/${item.slug}/`]));
 const months = new Map();
@@ -135,7 +149,7 @@ function layout({ title, description: summary, canonical, body, type = 'website'
   const masthead = isHome
     ? '<h1 class="masthead">Gautham Surakanti</h1>'
     : '<a class="masthead" href="/">Gautham Surakanti</a>';
-  const headerHtml = `<header class="site-header"><div class="shell header-inner">${masthead}<nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a></nav></div></header>`;
+  const headerHtml = `<header class="site-header"><div class="shell header-inner">${masthead}<nav aria-label="Main navigation"><a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a></nav></div></header>`;
   const footerHtml = isHome
     ? `<footer class="site-footer home-footer"><div class="shell footer-inner home-footer-inner"><div class="footer-links"><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.strava.com/athletes/19678138">Strava</a></div></div></footer>`
     : `<footer class="site-footer"><div class="shell footer-inner"><p>Gautham Surakanti</p><div><a href="/rss.xml">RSS</a><a href="/contact/">Contact</a><a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a></div></div></footer>`;
@@ -164,7 +178,15 @@ function articleList(items, { compact = false, titleFirst = false, className = '
 function pageHead(kicker, title, intro = '') {
   return `<section class="page-head">${kicker ? `<p class="eyebrow">${escape(kicker)}</p>` : ''}<h1>${escape(title)}</h1>${intro ? `<p class="lead">${escape(intro)}</p>` : ''}</section>`;
 }
-function taxonomyLink(category) { return `<a href="/category/${encodeURIComponent(category.slug)}/">${escape(plain(category.name))}</a>`; }
+function taxonomyLink(category) {
+  const slug = encodeURIComponent(category.slug);
+  const prefix = topicLandings.has(category.slug) ? '' : '/category';
+  return `<a href="${prefix}/${slug}/">${escape(plain(category.name))}</a>`;
+}
+function topicSection(id, heading, items) {
+  if (!items.length) return '';
+  return `<section class="topic-section" aria-labelledby="${id}"><h2 id="${id}">${heading}</h2>${articleList(items)}</section>`;
+}
 function commentBody(raw) {
   return String(raw)
     .replace(/<br\s*\/?>/gi, '\n')
@@ -235,12 +257,33 @@ for (const page of pages) {
   if (page.slug === 'contact') html = '<p>The old contact form is retired. You can reach me on <a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a>.</p>';
   if (page.slug === 'sample-page') html = '<p>This WordPress sample page is retired. Explore <a href="/all-articles-by-date/">all articles</a>.</p>';
   if (!plain(html)) html = `<p>Explore <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">homepage</a>.</p>`;
-  const body = `${pageHead('', title)}<div class="prose page-prose">${html}</div>`;
+  const body = page.slug === 'tech'
+    ? `${pageHead('', title)}<div class="prose">${html}</div>${topicSection('tech-articles', 'Tech articles', postsInCategory('tech'))}`
+    : `${pageHead('', title)}<div class="prose page-prose">${html}</div>`;
   await write(`/${page.slug}/`, layout({ title, description: description(page) || `${title} on Define or Defy.`, canonical: `/${page.slug}/`, body, noindex: page.slug === 'sample-page' }));
 }
 
+const sportsDescription = 'Race reports, rides, training, and stories from sport.';
+await write('/sports/', layout({
+  title: 'Sports', description: sportsDescription, canonical: '/sports/',
+  body: pageHead('', 'Sports', sportsDescription) + topicSection('sports-posts', 'Sports posts', postsInCategory('sports')),
+}));
+
+const musingsDescription = 'Weekly notes, personal essays, and other reflections.';
+const musings = postsInCategory('musings');
+const weeklyNotes = new Set(musings.filter(post =>
+  /^week-(?:at-a-glance-)?\d+$/.test(post.slug) ||
+  post.categories.some(id => categoryById.get(id)?.slug === 'weekly-newsletter')
+));
+await write('/musings/', layout({
+  title: 'Musings', description: musingsDescription, canonical: '/musings/',
+  body: pageHead('', 'Musings', musingsDescription)
+    + topicSection('weekly-notes', 'Weekly notes', [...weeklyNotes])
+    + topicSection('other-musings', 'Other musings', musings.filter(post => !weeklyNotes.has(post))),
+}));
 
 for (const category of categories) {
+  if (topicLandings.has(category.slug)) continue;
   const items = posts.filter(post => post.categories.includes(category.id));
   if (!items.length) continue;
   const url = `/category/${category.slug}/`;
@@ -259,7 +302,12 @@ for (const [month, items] of months) {
   await write(url, layout({ title, description: `Articles from ${title}.`, canonical: url, body: pageHead('Monthly archive', title) + articleList(items) }));
 }
 
-const sitemapUrls = ['/', ...posts.map(postUrl), ...pages.filter(page => !['an-introduction', 'sample-page'].includes(page.slug)).map(page => `/${page.slug}/`), ...categories.filter(cat => posts.some(post => post.categories.includes(cat.id))).map(cat => `/category/${cat.slug}/`)];
+const sitemapUrls = [
+  '/', ...posts.map(postUrl),
+  ...pages.filter(page => !['an-introduction', 'sample-page'].includes(page.slug)).map(page => `/${page.slug}/`),
+  ...[...topicLandings].map(slug => `/${slug}/`),
+  ...categories.filter(cat => !topicLandings.has(cat.slug) && posts.some(post => post.categories.includes(cat.id))).map(cat => `/category/${cat.slug}/`),
+];
 await fs.writeFile(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...new Set(sitemapUrls)].map(url => `<url><loc>${escape(origin + url)}</loc></url>`).join('')}</urlset>`);
 await fs.writeFile(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
 await fs.writeFile(path.join(output, 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Define or Defy</title><link>${origin}/</link><description>Writing by Gautham Surakanti</description>${posts.slice(0, 20).map(post => `<item><title>${escape(plain(post.title.rendered))}</title><link>${origin}${postUrl(post)}</link><guid>${origin}${postUrl(post)}</guid><pubDate>${new Date(post.date + 'Z').toUTCString()}</pubDate><description>${escape(description(post))}</description></item>`).join('')}</channel></rss>`);

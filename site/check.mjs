@@ -36,7 +36,7 @@ for (const asset of assets) {
   if (!stat?.size) failures.push(`Missing media: ${asset.target}`);
   if (stat?.size > 25 * 1024 * 1024) failures.push(`Oversize media: ${asset.target}`);
 }
-for (const required of ['404.html', 'sitemap.xml', 'rss.xml', 'robots.txt', 'style.css', 'favicon.svg', 'tech/index.html']) {
+for (const required of ['404.html', 'sitemap.xml', 'rss.xml', 'robots.txt', 'style.css', 'favicon.svg', 'tech/index.html', 'sports/index.html', 'musings/index.html']) {
   if (!await fs.stat(path.join(dist, required)).catch(() => null)) failures.push(`Missing output: ${required}`);
 }
 for (const removed of ['search', 'search.js', 'search-index.json']) {
@@ -57,10 +57,13 @@ const notFound = await fs.readFile(path.join(dist, '404.html'), 'utf8');
 if (!notFound.includes('name="robots" content="noindex"') || notFound.includes('rel="canonical"')) failures.push('404 page indexing metadata is wrong');
 const sitemap = await fs.readFile(path.join(dist, 'sitemap.xml'), 'utf8');
 for (const post of posts) if (!sitemap.includes(`https://gauthamsurakanti.com/${post.slug}/`)) failures.push(`Sitemap missing ${post.slug}`);
+for (const slug of ['tech', 'sports', 'musings']) {
+  if (!sitemap.includes(`<loc>https://gauthamsurakanti.com/${slug}/</loc>`)) failures.push(`Sitemap missing topic: ${slug}`);
+}
 const archive = await fs.readFile(path.join(dist, 'all-articles-by-date', 'index.html'), 'utf8');
 if (!archive.includes('<a href="/guest-posts/">Guest Posts</a>')) failures.push('Writing archive is missing the Guest Posts link');
 
-const mainNavigation = '<a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/about/">About</a>';
+const mainNavigation = '<a href="/all-articles-by-date/">Writing</a><a href="/tech/">Tech</a><a href="/sports/">Sports</a><a href="/musings/">Musings</a><a href="/about/">About</a>';
 let htmlCount = 0;
 async function checkLinks(dir) {
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {

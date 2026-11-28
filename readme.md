@@ -22,7 +22,9 @@ The build reads only published WordPress content, approved public comments in `a
 
 The theme lives in `site/style.css`; routes and templates live in `site/build.mjs`.
 
-The public `/tech/` route shows a short Engineering Notes introduction and a link to KoffeeAndKode. Published posts remain available through the Writing archive and their category pages.
+The Writing archive lists every published post once. Tech lists local engineering articles below the Engineering Notes introduction and KoffeeAndKode link. Sports and Musings list posts assigned to those categories. Musings groups numbered weekly posts and posts in the Weekly Newsletter category under Weekly notes.
+
+Assign one or more categories in Markdown front matter. Add categories for imported posts in `site/post-categories.json`, keyed by post slug. The overlay preserves the original WordPress categories.
 
 ## WordPress sync while Hostinger is active
 
