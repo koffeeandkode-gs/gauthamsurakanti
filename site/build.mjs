@@ -224,19 +224,18 @@ for (const post of posts) {
 const archiveBody = `${pageHead('The archive', 'All articles by date', `${posts.length} published pieces, from ${posts.at(-1)?.date.slice(0, 4)} to ${posts[0]?.date.slice(0, 4)}.`)}<p><a href="/guest-posts/">Guest Posts</a></p><div class="archive">${[...months].map(([month, items]) => `<section><h2 id="${month}">${new Intl.DateTimeFormat('en-IN', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${month}-01T00:00:00Z`))}</h2>${articleList(items)}</section>`).join('')}</div>`;
 await write('/all-articles-by-date/', layout({ title: 'All articles by date', description: 'Every published article on Define or Defy, in date order.', canonical: '/all-articles-by-date/', body: archiveBody }));
 
-const techPosts = posts.filter(post => post.categories.some(id => categoryById.get(id)?.slug === 'tech'));
-
 for (const page of pages) {
   if (['an-introduction', 'all-articles-by-date'].includes(page.slug)) continue;
   const title = plain(page.title.rendered);
-  let html = content(page);
+  let html = page.slug === 'tech'
+    ? `<p><strong>Writing on backend systems, AI infrastructure, and production engineering.</strong></p>
+<p>I’m <strong>Gautham Surakanti</strong>, a Senior Backend Engineer with eight years building distributed systems in Go, Python, and Node.js. I write about the engineering problems I work through: authentication, performance, real-time systems, LLM infrastructure, and system design.</p>
+<p><a href="https://koffeeandkode.com/">Visit KoffeeAndKode</a></p>`
+    : content(page);
   if (page.slug === 'contact') html = '<p>The old contact form is retired. You can reach me on <a href="https://www.linkedin.com/in/gauthamsurakanti/">LinkedIn</a>.</p>';
   if (page.slug === 'sample-page') html = '<p>This WordPress sample page is retired. Explore <a href="/all-articles-by-date/">all articles</a>.</p>';
   if (!plain(html)) html = `<p>Explore <a href="/all-articles-by-date/">all articles</a> or return to the <a href="/">homepage</a>.</p>`;
-  const techWriting = page.slug === 'tech' && techPosts.length
-    ? `<section aria-labelledby="tech-writing"><div class="section-heading"><h2 id="tech-writing">Latest tech articles</h2></div>${articleList(techPosts)}</section>`
-    : '';
-  const body = `${pageHead('', title)}${techWriting}<div class="prose page-prose">${html}</div>`;
+  const body = `${pageHead('', title)}<div class="prose page-prose">${html}</div>`;
   await write(`/${page.slug}/`, layout({ title, description: description(page) || `${title} on Define or Defy.`, canonical: `/${page.slug}/`, body, noindex: page.slug === 'sample-page' }));
 }
 
